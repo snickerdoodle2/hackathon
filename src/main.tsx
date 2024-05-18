@@ -4,6 +4,7 @@ import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Info from './pages/info';
 import Task from './pages/task';
+import MiniQuiz from './pages/miniquiz';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
     {
         path: '/task',
         element: <Task />,
+    },
+    {
+        path: '/mini-quiz',
+        element: <MiniQuiz />,
     },
     {
         path: '*',
