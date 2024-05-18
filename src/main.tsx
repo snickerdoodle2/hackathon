@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Wordle } from './components/minigames/wordle/wordle';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
     {
         path: 'scoreboard',
         element: <p>Scoreboard</p>,
+    },
+    {
+        path: 'debug/wordle',
+        element: <Wordle />,
     },
     {
         path: '*',
