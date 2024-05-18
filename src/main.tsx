@@ -17,7 +17,6 @@ const router = createBrowserRouter([
         element: <p>Scoreboard</p>,
     },
     {
-
         path: 'sections/:sectionId/tasks/',
         element: <div>tasklist</div>,
     },
