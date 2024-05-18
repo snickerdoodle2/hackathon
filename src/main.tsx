@@ -25,6 +25,7 @@ const router = createBrowserRouter([
         path: 'taskList', //sections/:sectionId/
         element: <TaskLadder />,
     },
+    {
         path: 'nono',
         element: <Nono onFinish={() => alert('xd')} />,
     },
