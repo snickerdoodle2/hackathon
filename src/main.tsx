@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+import Nono from './components/minigames/Nono';
+
 import { GamePage } from '@/pages/game_page.tsx';
 import { Wordle } from './components/minigames/wordle/wordle';
 import Info from './pages/info';
@@ -16,6 +19,10 @@ const router = createBrowserRouter([
     {
         path: 'scoreboard',
         element: <p>Scoreboard</p>,
+    },
+    {
+        path: 'nono',
+        element: <Nono onFinish={() => alert('xd')} />,
     },
     {
         path: 'sections/:sectionId/tasks/',
