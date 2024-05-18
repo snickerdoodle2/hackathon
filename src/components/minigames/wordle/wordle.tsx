@@ -30,6 +30,11 @@ const langs: Language[] = [
 export const Wordle = () => {
     const [input, setInput] = useState('');
 
+    const selectLanguage = (name: string) => {
+        setInput('');
+        console.log(name);
+    };
+
     return (
         <div>
             <Input
@@ -38,7 +43,16 @@ export const Wordle = () => {
                     setInput(e.target.value);
                 }}
             />
-            {input.length > 0 && langs.map(e => <p>{e.name}</p>)}
+            {input.length > 0 &&
+                langs
+                    .filter((e) =>
+                        e.name.toLowerCase().startsWith(input.toLowerCase())
+                    )
+                    .map((e) => (
+                        <p key={e.name} onClick={() => selectLanguage(e.name)}>
+                            {e.name}
+                        </p>
+                    ))}
         </div>
     );
 };
