@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import TaskLadder from './pages/taskList';
 
 import Nono from './components/minigames/Nono';
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     {
         path: 'scoreboard',
         element: <p>Scoreboard</p>,
+    },
+    {
+        path: 'taskList', //sections/:sectionId/
+        element: <TaskLadder />,
     },
     {
         path: 'nono',
