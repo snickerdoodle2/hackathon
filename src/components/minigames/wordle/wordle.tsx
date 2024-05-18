@@ -2,7 +2,8 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { ArrowDown, ArrowUp } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Paradigm = 'Objective' | 'Imperative' | 'Functional';
 type Language = {
@@ -154,6 +155,7 @@ const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
 
 export const Wordle = () => {
     const [input, setInput] = useState('');
+    const navigation = useNavigate();
 
     const correct = langs[0];
 
@@ -166,7 +168,26 @@ export const Wordle = () => {
         setChoices((prev) => [...prev, lang]);
     };
 
-    if (choices.includes(correct)) return <p>yay:)</p>;
+    const correctChoice = choices.includes(correct);
+
+    useEffect(() => {
+        if (correctChoice) {
+            // TODO: Add points
+
+            setTimeout(() => {
+                navigation('/');
+            }, 5000);
+        }
+    }, [correctChoice, navigation]);
+
+    if (correctChoice) {
+        return (
+            <div>
+                <p>yay!</p>
+                <p>Redirecting in 5 seconds!!</p>
+            </div>
+        );
+    }
 
     return (
         <div className='flex flex-col justify-between h-svh px-4 py-2 '>
