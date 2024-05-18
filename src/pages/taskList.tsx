@@ -132,7 +132,7 @@ const TaskLadder: React.FC = () => {
                 setStarred(!starred);
             }
         };
-    }, [tasks, clickedButton, starred]);
+    }, [clickedButton, starred]); //add tasks as dep
 
     return (
         <div className='task-ladder-container'>
@@ -257,11 +257,11 @@ const TaskLadder: React.FC = () => {
                                         style={{
                                             backgroundColor:
                                                 clickedButton === task.id &&
-                                                    !task.completed
+                                                !task.completed
                                                     ? '#abecc7'
                                                     : task.completed
-                                                        ? '#90e16f'
-                                                        : '',
+                                                      ? '#90e16f'
+                                                      : '',
                                             width: '40px',
                                             height: '40px',
                                             padding: '0',
