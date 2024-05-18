@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Info from './pages/info';
+import Task from './pages/task';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: '/info',
         element: <Info />,
+    },
+    {
+        path: '/task',
+        element: <Task />,
     },
     {
         path: '*',
