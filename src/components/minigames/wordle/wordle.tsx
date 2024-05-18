@@ -79,7 +79,7 @@ const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
     correct,
 }) => {
     return (
-        <div className='grid grid-cols-5 text-[0.7rem] font-semibold break-words gap-1'>
+        <div className='grid grid-cols-5 text-[0.6rem] font-semibold break-words gap-1 '>
             <Cell className='font-bold'>
                 <span>Język</span>
             </Cell>
@@ -147,6 +147,8 @@ const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
 export const Wordle = () => {
     const [input, setInput] = useState('');
 
+    const correct = langs[0];
+
     const [choices, setChoices] = useState<Language[]>([]);
 
     const selectLanguage = (name: string) => {
@@ -156,8 +158,10 @@ export const Wordle = () => {
         setChoices((prev) => [...prev, lang]);
     };
 
+    if (choices.includes(correct)) return <p>yay:)</p>
+
     return (
-        <div className='flex flex-col justify-between h-svh'>
+        <div className='flex flex-col justify-between h-svh px-4 py-2 '>
             <div>
                 <Input
                     value={input}
@@ -191,7 +195,7 @@ export const Wordle = () => {
                         ))}
             </div>
 
-            <Results choices={choices} correct={langs[0]} />
+            <Results choices={choices} correct={correct} />
         </div>
     );
 };
