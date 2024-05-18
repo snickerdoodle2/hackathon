@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { ArrowDown, ArrowUp } from 'lucide-react';
@@ -17,6 +18,13 @@ const langs: Language[] = [
         name: 'C',
         paradigm: ['Imperative'],
         year: 1972,
+        complied: 'Compiled',
+        typed: 'Static',
+    },
+    {
+        name: 'C++',
+        paradigm: ['Imperative', 'Objective'],
+        year: 1983,
         complied: 'Compiled',
         typed: 'Static',
     },
@@ -59,10 +67,10 @@ const getBGColor = (match: Match) => {
 };
 
 const getArrow = (diff: number) => {
-    if (diff === 0) return <></>
-    if (diff < 0) return <ArrowUp className='w-5 h-5' />
-    return <ArrowDown className='w-14 h-14 opacity-15 absolute' />
-}
+    if (diff === 0) return <></>;
+    if (diff < 0) return <ArrowUp className='w-5 h-5' />;
+    return <ArrowDown className='w-14 h-14 opacity-15 absolute' />;
+};
 
 const getCommon = <T,>(a: T[], b: T[]) => {
     const common = a.filter((e) => b.includes(e));
@@ -70,8 +78,8 @@ const getCommon = <T,>(a: T[], b: T[]) => {
     return a.length === common.length && common.length === b.length
         ? 'FULL'
         : common.length > 0
-            ? 'PARTIAL'
-            : 'NO';
+          ? 'PARTIAL'
+          : 'NO';
 };
 
 const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
@@ -130,8 +138,8 @@ const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
                                 yearDiff == 0
                                     ? 'FULL'
                                     : Math.abs(yearDiff) < 10
-                                        ? 'PARTIAL'
-                                        : 'NO'
+                                      ? 'PARTIAL'
+                                      : 'NO'
                             )}
                         >
                             {getArrow(yearDiff)}
@@ -158,41 +166,47 @@ export const Wordle = () => {
         setChoices((prev) => [...prev, lang]);
     };
 
-    if (choices.includes(correct)) return <p>yay:)</p>
+    if (choices.includes(correct)) return <p>yay:)</p>;
 
     return (
         <div className='flex flex-col justify-between h-svh px-4 py-2 '>
             <div>
                 <Input
                     value={input}
+                    placeholder='Wpisz język programowania...'
                     onChange={(e) => {
                         setInput(e.target.value);
                     }}
+                    className='mb-6'
                 />
-                {input.length > 0 &&
-                    langs
-                        .filter((e) => {
-                            if (
-                                !e.name
-                                    .toLowerCase()
-                                    .startsWith(input.toLowerCase())
-                            )
-                                return false;
+                <ul className='flex flex-col gap-2'>
+                    {input.length > 0 &&
+                        langs
+                            .filter((e) => {
+                                if (
+                                    !e.name
+                                        .toLowerCase()
+                                        .startsWith(input.toLowerCase())
+                                )
+                                    return false;
 
-                            // hide already selected
-                            if (choices.find((c) => c.name === e.name))
-                                return false;
+                                // hide already selected
+                                if (choices.find((c) => c.name === e.name))
+                                    return false;
 
-                            return true;
-                        })
-                        .map((e) => (
-                            <p
-                                key={e.name}
-                                onClick={() => selectLanguage(e.name)}
-                            >
-                                {e.name}
-                            </p>
-                        ))}
+                                return true;
+                            })
+                            .map((e) => (
+                                <li
+                                    key={e.name}
+                                    onClick={() => selectLanguage(e.name)}
+                                >
+                                    <Card className='bg-background py-2 px-4'>
+                                        {e.name}
+                                    </Card>
+                                </li>
+                            ))}
+                </ul>
             </div>
 
             <Results choices={choices} correct={correct} />
