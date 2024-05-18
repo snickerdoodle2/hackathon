@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/card';
 
 import { Button } from '@/components/ui/button';
+import Nono from '@/components/minigames/Nono';
+import { Wordle } from '@/components/minigames/wordle/wordle';
 
 function Loading() {
     return (
@@ -64,7 +66,7 @@ function GameWrapper(navigate, fallbackRoute, sectionId, task, content) {
                 </Card>
             </div>
             <div
-                className='flex justify-center items-center flex-grow'
+                className='flex flex-col justify-center items-center flex-grow'
                 style={{ height: 'calc(100% - 12rem)' }}
             >
                 {content}
@@ -84,6 +86,13 @@ function GameWrapper(navigate, fallbackRoute, sectionId, task, content) {
         </div>
     );
 }
+
+const GameHelper = (type: string, onFinish: () => void) => {
+    console.log(type);
+    if (type === 'Nonogram') return <Nono onFinish={onFinish} />;
+    if (type === 'Wordle') return <Wordle onFinish={onFinish} />;
+    return <p>Game not found :(</p>;
+};
 
 export const GamePage = () => {
     const navigate = useNavigate();
@@ -124,21 +133,11 @@ export const GamePage = () => {
 
     const fallbackRoute = `/sections/${sectionId}/tasks`;
 
-    if (task.game.type === 'Wordle') {
-        return GameWrapper(
-            navigate,
-            fallbackRoute,
-            sectionId,
-            task,
-            <div>Wordle game</div>
-        );
-    }
-
     return GameWrapper(
         navigate,
         fallbackRoute,
         sectionId,
         task,
-        <div>Unknown task</div>
+        GameHelper(task.game.type, () => alert('xd'))
     );
 };

@@ -1,3 +1,4 @@
+// TODO: naprawic ten paski po prawej
 import { useEffect, useState } from 'react';
 import Cell from '../nonogram/Cell';
 // import { useNavigate } from 'react-router-dom';
