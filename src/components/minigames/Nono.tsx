@@ -25,7 +25,7 @@ export default function Nono({ onFinish }: Props) {
         [1, 0, 5, 6, 5, 0, 0],
         [0, 0, 6, 7, 6, 0, 0],
         [0, 0, 5, 6, 5, 0, 0],
-        [0, 0, 6, 7, 6, 0, 1],
+        [0, 0, 6, 5, 6, 0, 1],
         [0, 0, 5, 2, 5, 0, 0],
         [0, 2, 2, 3, 2, 2, 0],
         [0, 2, 3, 4, 3, 2, 0],
@@ -150,7 +150,7 @@ export default function Nono({ onFinish }: Props) {
             setBackgroundTransition(backTransTarget);
             onFinish();
         }
-    }, [wrong]);
+    }, [wrong, onFinish]);
 
     return (
         <div

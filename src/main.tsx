@@ -10,7 +10,6 @@ import { Wordle } from './components/minigames/wordle/wordle';
 import Info from './pages/info';
 import Task from './pages/task';
 
-
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
     {
@@ -22,7 +21,6 @@ const router = createBrowserRouter([
         element: <p>Scoreboard</p>,
     },
     {
-
         path: 'nono',
         element: <Nono onFinish={() => alert('xd')} />,
     },

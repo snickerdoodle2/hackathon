@@ -50,7 +50,7 @@ export default function Cell({
             setColour(solvedColor);
             setPaddingWidth(0);
         }
-    }, [allSolved]);
+    }, [allSolved, solvedColor]);
 
     return (
         <button
