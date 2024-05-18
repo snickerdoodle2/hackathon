@@ -6,19 +6,20 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <p>Home</p>
+        path: '/',
+        element: <p>Home</p>,
     },
     {
-        path: "scoreboard",
-        element: <p>Scoreboard</p>
+        path: 'scoreboard',
+        element: <p>Scoreboard</p>,
     },
     {
-        path: "*",
+        path: '*',
         // TODO: jak bedzie czas to spoko to bedzie zrobic, ale pewnie nie bedzie
         // i to tak whatever
-        element: <p>404 - not found :(</p>
-    }
+        // NOTE: chyba to musi być na dole (nie mam pojęcia)
+        element: <p>404 - not found :(</p>,
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
