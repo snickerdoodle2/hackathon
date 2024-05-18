@@ -4,9 +4,9 @@ interface Props {
     shouldBeClicked: boolean;
     dimension: number;
     changeWrong: (_arg: number) => void;
-    solvedColor: string
-    allSolved:boolean
-    backTrans: number
+    solvedColor: string;
+    allSolved: boolean;
+    backTrans: number;
 }
 
 enum State {
@@ -21,36 +21,36 @@ export default function Cell({
     dimension,
     solvedColor,
     allSolved,
-    backTrans
+    backTrans,
 }: Props) {
-    const [colour, setColour] = useState<string>("white");
+    const [colour, setColour] = useState<string>('white');
     const [xVisible, setXVisible] = useState<boolean>(false);
     const [currentState, setState] = useState<State>(State.EMPTY);
-    const [paddingWidth, setPaddingWidth] = useState(0.5)
+    const [paddingWidth, setPaddingWidth] = useState(0.5);
 
     function changeState(state: State) {
         if (state == State.EMPTY) {
-            setColour("white");
+            setColour('white');
             setXVisible(false);
         } else if (state == State.FULL) {
             changeWrong(shouldBeClicked == true ? -1 : 1);
-            setColour("black");
+            setColour('black');
             setXVisible(false);
         } else {
             changeWrong(shouldBeClicked == false ? -1 : 1);
-            setColour("white");
+            setColour('white');
             setXVisible(true);
         }
-        setState(state)
+        setState(state);
     }
 
-    useEffect(()=>{
-        if(allSolved){
-            setXVisible(false)
-            setColour(solvedColor)
-            setPaddingWidth(0)
+    useEffect(() => {
+        if (allSolved) {
+            setXVisible(false);
+            setColour(solvedColor);
+            setPaddingWidth(0);
         }
-    }, [allSolved])
+    }, [allSolved]);
 
     return (
         <button

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Cell from '../nonogram/Cell';
-import { useNavigate } from 'react-router-dom';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import WinPopup from '../nonogram/WinPopup';
+// import { useNavigate } from 'react-router-dom';
+// import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+// import WinPopup from '../nonogram/WinPopup';
 
-interface Props{
-    onFinish: ()=>void
+interface Props {
+    onFinish: () => void;
 }
 
-export default function Nono({onFinish}:Props) {
+export default function Nono({ onFinish }: Props) {
     // skyblue, star, grey, orange, yellow, red, white, window
     const c = [
         '18256b',
@@ -51,11 +51,11 @@ export default function Nono({onFinish}:Props) {
 
     const [wrong, setWrong] = useState<number>(countOnes());
 
-    const [showComponent, setShowComponent] = useState(false);
+    // const [showComponent, setShowComponent] = useState(false);
 
-    const [count, setCount] = useState<number>(1);
+    // const [count, setCount] = useState<number>(1);
 
-    const navi = useNavigate();
+    // const navi = useNavigate();
 
     function countOnes() {
         let ones = 0;
@@ -71,9 +71,9 @@ export default function Nono({onFinish}:Props) {
     }
 
     function getRowClues() {
-        let rowClues: number[][] = [];
+        const rowClues: number[][] = [];
         nonogram.forEach((item) => {
-            let rc = [];
+            const rc = [];
             let temp = 0;
             let continous = false;
             item.split('').forEach((letter) => {
@@ -101,10 +101,10 @@ export default function Nono({onFinish}:Props) {
     }
 
     function getColumnClues() {
-        let columnClues: number[][] = [];
+        const columnClues: number[][] = [];
 
         for (let i = 0; i < nonogram[0].length; i++) {
-            let cc = [];
+            const cc = [];
             let temp = 0;
             let continous = false;
             nonogram.forEach((item) => {
@@ -140,7 +140,7 @@ export default function Nono({onFinish}:Props) {
     // }
 
     const whenCountdown = 0;
-    const countdownLength = 3;
+    // const countdownLength = 3;
     const backTransTarget = 1.5;
     const [backgroundTransition, setBackgroundTransition] = useState<number>(0);
 
@@ -148,7 +148,7 @@ export default function Nono({onFinish}:Props) {
         if (wrong == whenCountdown) {
             // countdown(countdownLength);
             setBackgroundTransition(backTransTarget);
-            onFinish()
+            onFinish();
         }
     }, [wrong]);
 
@@ -248,7 +248,10 @@ export default function Nono({onFinish}:Props) {
                                             cell == '1' ? true : false
                                         }
                                         changeWrong={changeWrong}
-                                        allSolved={backgroundTransition == backTransTarget }
+                                        allSolved={
+                                            backgroundTransition ==
+                                            backTransTarget
+                                        }
                                         solvedColor={`#${c[cNonogram[i][j]]}`}
                                         backTrans={backgroundTransition}
                                     />

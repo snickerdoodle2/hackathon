@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 interface Props {
@@ -51,7 +51,7 @@ export default function WinPopup({
                 strokeWidth={6}
                 size={40}
             >
-                {({}) => count}
+                {() => count}
             </CountdownCircleTimer>
         </div>
     );

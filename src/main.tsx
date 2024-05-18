@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     {
 
         path: 'nono',
-        element: <Nono onFinish={()=>alert("xd")}/>
+        element: <Nono onFinish={() => alert('xd')} />,
     },
     {
         path: 'sections/:sectionId/tasks/',
