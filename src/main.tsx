@@ -10,6 +10,7 @@ import { GamePage } from '@/pages/game_page.tsx';
 import { Wordle } from './components/minigames/wordle/wordle';
 import Info from './pages/info';
 import Task from './pages/task';
+import MiniQuiz from './pages/miniquiz';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
     {
         path: '/task',
         element: <Task />,
+    },
+    {
+        path: '/mini-quiz',
+        element: <MiniQuiz />,
     },
     {
         path: '*',
