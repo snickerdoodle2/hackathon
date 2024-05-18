@@ -44,8 +44,29 @@ const Cell: React.FC<{ text: string; className?: string }> = ({
     );
 };
 
+type Match = 'FULL' | 'PARTIAL' | 'NO';
+
+const getBGColor = (match: Match) => {
+    switch (match) {
+        case 'FULL':
+            return 'bg-green-500'
+        case 'PARTIAL':
+            return 'bg-yellow-300'
+        case 'NO':
+            return 'bg-red-500'
+    }
+}
+
+const getCommon = <T,>(a: T[], b: T[]) => {
+    const common = a.filter(e => b.includes(e))
+
+    return (a.length === common.length) && (common.length === b.length) ?
+        'FULL' : common.length > 0 ? 'PARTIAL' : 'NO'
+}
+
 const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
     choices,
+    correct
 }) => {
     return (
         <div className='grid grid-cols-5 text-[0.7rem] font-semibold break-words gap-1'>
@@ -55,17 +76,20 @@ const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
             <Cell text='Compiled?' className='font-bold' />
             <Cell text='Rok wydania' className='font-bold' />
             {choices.map((lang) => {
+                const yearDiff = lang.year - correct.year;
                 return (
-                    <>
+                    <React.Fragment key={lang.name}>
                         <Cell text={lang.name} />
-                        <Cell text={lang.paradigm.join(', ')} />
-                        <Cell text={lang.typed} />
-                        <Cell text={lang.complied} />
-                        <Cell text={'' + lang.year} />
-                    </>
+                        <Cell text={lang.paradigm.join(', ')} className={
+                            getBGColor(getCommon(lang.paradigm, correct.paradigm))
+                        } />
+                        <Cell text={lang.typed} className={getBGColor(lang.typed === correct.typed ? 'FULL' : 'NO')} />
+                        <Cell text={lang.complied} className={getBGColor(lang.complied === correct.complied ? 'FULL' : 'NO')} />
+                        <Cell text={'' + lang.year} className={getBGColor(yearDiff == 0 ? 'FULL' : Math.abs(yearDiff) < 10 ? 'PARTIAL' : 'NO')} />
+                    </React.Fragment>
                 );
             })}
-        </div>
+        </div >
     );
 };
 
