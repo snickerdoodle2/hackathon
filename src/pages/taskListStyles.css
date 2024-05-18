@@ -21,8 +21,6 @@
     color: #838586;
 }
 
-
-
 .task-ladder {
     position: relative;
     display: flex;
@@ -44,11 +42,11 @@
     border-bottom: 2px solid rgb(86, 86, 86);
 }
 
-.task-ladder-score>div {
+.task-ladder-score > div {
     margin-left: 4px;
 }
 
-.task-ladder-score>p {
+.task-ladder-score > p {
     margin-right: 4px;
     font-size: 1.3em;
     color: #838586;
@@ -60,7 +58,9 @@
     border-radius: 0.5rem;
     text-align: center;
     background-color: #f6c342;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .task-ladder-line {
@@ -96,7 +96,7 @@
 
 .star-icon {
     display: block;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
     color: #6c6c6c;
 }
 
@@ -105,20 +105,20 @@
 }
 
 .starred {
-    animation: spin .6s forwards;
+    animation: spin 0.6s forwards;
     transform-origin: 50% 50%;
     transition-timing-function: ease-in-out;
 }
 
 .starred .star-icon {
-    animation: spin .6s forwards;
+    animation: spin 0.6s forwards;
     transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
     transition-timing-function: ease-in-out;
 }
 
 .unstarred .star-icon {
-    animation: unspin .3s forwards;
+    animation: unspin 0.3s forwards;
     transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
     transition-timing-function: ease-in-out;
