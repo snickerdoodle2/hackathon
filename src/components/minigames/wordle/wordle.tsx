@@ -1,5 +1,6 @@
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 import React, { useState } from 'react';
 
 type Paradigm = 'Objective' | 'Imperative' | 'Functional';
@@ -28,8 +29,8 @@ const langs: Language[] = [
     },
 ];
 
-const Cell: React.FC<{ text: string; className?: string }> = ({
-    text,
+const Cell: React.FC<{ children?: React.ReactNode; className?: string }> = ({
+    children,
     className = 5,
 }) => {
     return (
@@ -39,7 +40,7 @@ const Cell: React.FC<{ text: string; className?: string }> = ({
                 className
             )}
         >
-            {text}
+            {children}
         </p>
     );
 };
@@ -49,47 +50,97 @@ type Match = 'FULL' | 'PARTIAL' | 'NO';
 const getBGColor = (match: Match) => {
     switch (match) {
         case 'FULL':
-            return 'bg-green-500'
+            return 'bg-green-500';
         case 'PARTIAL':
-            return 'bg-yellow-300'
+            return 'bg-yellow-300';
         case 'NO':
-            return 'bg-red-500'
+            return 'bg-red-500';
     }
+};
+
+const getArrow = (diff: number) => {
+    if (diff === 0) return <></>
+    if (diff < 0) return <ArrowUp className='w-5 h-5' />
+    return <ArrowDown className='w-14 h-14 opacity-15 absolute' />
 }
 
 const getCommon = <T,>(a: T[], b: T[]) => {
-    const common = a.filter(e => b.includes(e))
+    const common = a.filter((e) => b.includes(e));
 
-    return (a.length === common.length) && (common.length === b.length) ?
-        'FULL' : common.length > 0 ? 'PARTIAL' : 'NO'
-}
+    return a.length === common.length && common.length === b.length
+        ? 'FULL'
+        : common.length > 0
+            ? 'PARTIAL'
+            : 'NO';
+};
 
 const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
     choices,
-    correct
+    correct,
 }) => {
     return (
         <div className='grid grid-cols-5 text-[0.7rem] font-semibold break-words gap-1'>
-            <Cell text='Język' className='font-bold' />
-            <Cell text='Paradygmat' className='font-bold' />
-            <Cell text='Typowany' className='font-bold' />
-            <Cell text='Compiled?' className='font-bold' />
-            <Cell text='Rok wydania' className='font-bold' />
+            <Cell className='font-bold'>
+                <span>Język</span>
+            </Cell>
+            <Cell className='font-bold'>
+                <span>Paradygmat</span>
+            </Cell>
+            <Cell className='font-bold'>
+                <span>Typowany</span>
+            </Cell>
+            <Cell className='font-bold'>
+                <span>Compiled?</span>
+            </Cell>
+            <Cell className='font-bold'>
+                <span>Rok wydania</span>
+            </Cell>
             {choices.map((lang) => {
                 const yearDiff = lang.year - correct.year;
                 return (
                     <React.Fragment key={lang.name}>
-                        <Cell text={lang.name} />
-                        <Cell text={lang.paradigm.join(', ')} className={
-                            getBGColor(getCommon(lang.paradigm, correct.paradigm))
-                        } />
-                        <Cell text={lang.typed} className={getBGColor(lang.typed === correct.typed ? 'FULL' : 'NO')} />
-                        <Cell text={lang.complied} className={getBGColor(lang.complied === correct.complied ? 'FULL' : 'NO')} />
-                        <Cell text={'' + lang.year} className={getBGColor(yearDiff == 0 ? 'FULL' : Math.abs(yearDiff) < 10 ? 'PARTIAL' : 'NO')} />
+                        <Cell>
+                            <span>{lang.name}</span>
+                        </Cell>
+                        <Cell
+                            className={getBGColor(
+                                getCommon(lang.paradigm, correct.paradigm)
+                            )}
+                        >
+                            <span>{lang.paradigm.join(', ')}</span>
+                        </Cell>
+                        <Cell
+                            className={getBGColor(
+                                lang.typed === correct.typed ? 'FULL' : 'NO'
+                            )}
+                        >
+                            <span>{lang.typed}</span>
+                        </Cell>
+                        <Cell
+                            className={getBGColor(
+                                lang.complied === correct.complied
+                                    ? 'FULL'
+                                    : 'NO'
+                            )}
+                        >
+                            <span>{lang.complied}</span>
+                        </Cell>
+                        <Cell
+                            className={getBGColor(
+                                yearDiff == 0
+                                    ? 'FULL'
+                                    : Math.abs(yearDiff) < 10
+                                        ? 'PARTIAL'
+                                        : 'NO'
+                            )}
+                        >
+                            {getArrow(yearDiff)}
+                            <span>{lang.year}</span>
+                        </Cell>
                     </React.Fragment>
                 );
             })}
-        </div >
+        </div>
     );
 };
 
