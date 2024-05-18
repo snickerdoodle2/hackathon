@@ -3,36 +3,35 @@ class Section {
     private configurationid: number;
 
     private constructor(id: number, configData: never) {
-        this.configurationid = id
+        this.configurationid = id;
         this.configData = configData;
     }
 
-    static async createInstance(id:number)
-    {
+    static async createInstance(id: number) {
         const configuration = await fetch(`/${id}.json`);
         const configData = await configuration.json();
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        return new Section(id, configData)
+        return new Section(id, configData);
     }
 
-    getTaskById(id: number)
-    {
+    getTaskById(id: number) {
         const taskId = Number(id);
 
         if (this.configData === null)
             throw new Error('Section not initialized');
 
-
         //check if list of tasks is not empty
         if (this.configData.tasks.length === 0)
             throw new Error('No tasks in section');
 
-        if (!this.configData.tasks.some((task: { id; }) => task.id === taskId))
+        if (!this.configData.tasks.some((task: { id }) => task.id === taskId))
             throw new Error('Task not found');
 
-        return this.configData.tasks.find((task: { id: number; }) => task.id === taskId)
+        return this.configData.tasks.find(
+            (task: { id: number }) => task.id === taskId
+        );
     }
 }
 

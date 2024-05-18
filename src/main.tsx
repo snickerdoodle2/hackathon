@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { GamePage} from '@/pages/game_page.tsx';
+import { GamePage } from '@/pages/game_page.tsx';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -16,11 +16,11 @@ const router = createBrowserRouter([
     },
     {
         path: 'sections/:sectionId/tasks/',
-        element: <div>tasklist</div>
+        element: <div>tasklist</div>,
     },
     {
-      path: 'sections/:sectionId/tasks/:taskId/game',
-      element: <GamePage />,
+        path: 'sections/:sectionId/tasks/:taskId/game',
+        element: <GamePage />,
     },
     {
         path: '*',
