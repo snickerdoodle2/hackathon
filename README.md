@@ -76,3 +76,22 @@ To jest gra bo 1:
 -   Ekran Wstepny
 -   Ekran Powieksoznych informacji
 -   Ekrany Minigierek
+
+
+## Retro
+
+Do poprway:
+- eslit - nawet nie wiem co to
+- zapominelismy po systemie punktacji - gry powinny przyznawac punkty za gry odpowiedzi etapy 
+- punktacaja hackatony - malo pkt za personalne akcje  
+
+Powinnismy zaczac:
+- Powiekszyc tematyk e z kola naukowego bit na np kierunek informatyki czy tematy jak cyberbezpiczenstwo i Iot
+- wyspanie sie
+
+
+Jestesmy zadowloleni:
+- gierki - gierki dzialaja bardzo dobrze i sa prosto 
+- Kebab - przerwa na obiad byla wspania i smaczna odpowiedniej dlugosci
+- UI - fantastycznie wyglada strona głowna 
+- Atmosfera - zespol jest zadowolony ze wspolpracy
