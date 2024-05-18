@@ -55,13 +55,15 @@ const Home = () => {
                         className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
                     ></img>
                 </AlertDialogTrigger>
-                <AlertDialogContent className="absolute overflow-clip">
+                <AlertDialogContent className='absolute overflow-clip'>
                     <AlertDialogHeader>
                         <AlertDialogTitle>
                             Wpisz lub zeskanuj kod
                         </AlertDialogTitle>
                         <AlertDialogDescription>
-                            Kody do zadania znajdziesz na dniach otwartych AGH a podpowiedzi co do ich lokacji umieszczone są na poszczególnych sekcjach.
+                            Kody do zadania znajdziesz na dniach otwartych AGH a
+                            podpowiedzi co do ich lokacji umieszczone są na
+                            poszczególnych sekcjach.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
