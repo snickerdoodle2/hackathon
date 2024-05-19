@@ -77,6 +77,22 @@ To jest gra bo 1:
 -   Ekran Powieksoznych informacji
 -   Ekrany Minigierek
 
+## Retrospektywa
+
+Co do poprawy:
+- eslint
+- ograniczenie motywu tlyko do koła nakowego bit
+
+Co mozna zrobic lepiej:
+- poszerzenie motywu o Iot
+- poszerzenie motywu o Cyberbezpieczenstwo
+- poszerzenie motywu 0 Space Systemes AGH
+
+Co dobrze wyszlo:
+- gierki
+- kebab
+- zarzadzanie
+
 ## Proces Instalacyjny
 
 ### Wymagania wstępne
