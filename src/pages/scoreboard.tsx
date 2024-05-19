@@ -24,10 +24,6 @@ const mock: User[] = [
         score: 180,
     },
     {
-        name: 'Ty',
-        score: 220,
-    },
-    {
         name: 'Marysia',
         score: 190,
     },
