@@ -23,6 +23,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Section, { Task } from '@/lib/section';
 import { StorageContext } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background.tsx';
+import Availability from '@/lib/availability';
+import { toast } from '@/components/ui/use-toast';
 
 enum Option {
     Task = 'Task',
@@ -221,10 +223,37 @@ const TaskLadder: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        if (sectionId != undefined && !loading) {
+            const status = Availability.isSectionAvailable(parseInt(sectionId));
+            if (status) {
+                console.log('Authorized section: ', sectionId);
+
+                toast({
+                    variant: 'default',
+                    title: 'Rozpoczynamy eksploracje',
+                    description: 'Dobrej zabawy!',
+                    duration: 2000,
+                });
+
+                navigate(`/sections/${sectionId}/tasks`);
+            } else {
+                console.log('Not authorized section: ', sectionId);
+                toast({
+                    variant: 'destructive',
+                    title: 'Nieautoryzowany dostęp',
+                    description: 'Niepoprawne hasło dostępu do sekcji.',
+                    duration: 2000,
+                });
+
+                navigate('/');
+            }
+        }
+    }, [section, loading, navigate, sectionId]);
+
     if (loading) {
         return Loading();
     }
-
     if (error) {
         return <div>Error loading configuration: {error.message}</div>;
     }
