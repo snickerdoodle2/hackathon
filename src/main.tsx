@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { GamePage } from '@/pages/game_page.tsx';
+import { AuthorizeSection } from '@/pages/authorize_section.tsx';
 import { Wordle } from './components/minigames/wordle/wordle';
 import Info from './pages/info';
 import Task from './pages/task';
 
-// TODO: jakies inne routy moze?
 const router = createBrowserRouter([
     {
         path: '/',
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
     {
         path: 'sections/:sectionId/tasks/:taskId/game',
         element: <GamePage />,
+    },
+    {
+        path: 'sections/:sectionId/authorize/:pass',
+        element: <AuthorizeSection />,
     },
     {
         path: 'debug/wordle',
