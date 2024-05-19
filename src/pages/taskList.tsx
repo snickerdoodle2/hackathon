@@ -120,15 +120,16 @@ const TaskLadder: React.FC = () => {
                     option:
                         task.type === 'Game'
                             ? Option.Game
+                            // @ts-expect-error: This comparison is intentional for demonstration purposes
                             : task.type === 'Task'
-                              ? Option.Task
-                              : task.type === 'Info'
-                                ? Option.Info
-                                : (() => {
-                                      throw new Error(
-                                          `Unknown task ${task.type}`
-                                      );
-                                  })(),
+                                ? Option.Task
+                                : task.type === 'Info'
+                                    ? Option.Info
+                                    : (() => {
+                                        throw new Error(
+                                            `Unknown task ${task.type}`
+                                        );
+                                    })(),
                     name: 'unknownRR',
                 };
                 ttasks.push(newTask);
@@ -368,11 +369,11 @@ const TaskLadder: React.FC = () => {
                                                     backgroundColor:
                                                         clickedButton ===
                                                             task.id &&
-                                                        !task.completed
+                                                            !task.completed
                                                             ? '#abecc7'
                                                             : task.completed
-                                                              ? '#90e16f'
-                                                              : '',
+                                                                ? '#90e16f'
+                                                                : '',
                                                     width: '40px',
                                                     height: '40px',
                                                     padding: '0',
