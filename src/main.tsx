@@ -10,16 +10,13 @@ import Info from './pages/info';
 import Task from './pages/task';
 import Prizes from '@/pages/prizes';
 import MiniQuiz from './pages/miniquiz';
+import Scoreboard from './pages/scoreboard';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Home />,
-    },
-    {
-        path: 'scoreboard',
-        element: <p>Scoreboard</p>,
     },
     {
         path: 'taskList', //sections/:sectionId/
@@ -48,6 +45,10 @@ const router = createBrowserRouter([
     {
         path: '/prizes',
         element: <Prizes />
+    },
+    {
+        path: '/scoreboard',
+        element: <Scoreboard />
     },
     {
         path: '*',
