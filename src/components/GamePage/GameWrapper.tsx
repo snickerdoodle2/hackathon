@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import GameHelper from './GameHelper';
 import { Button } from '../ui/button';
 import WinPopup from '../nonogram/WinPopup';
+import { type GameTask } from '@/lib/section';
 
 interface Props {
-    navigate: any;
-    fallbackRoute: any;
-    sectionId: any;
-    task: any;
+    navigate: NavigateFunction;
+    fallbackRoute: string;
+    task: GameTask;
 }
 
-export default function GameWrapper({
-    navigate,
-    fallbackRoute,
-    sectionId,
-    task,
-}: Props) {
+export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
     const [shouldShow, setShouldShow] = useState<boolean>(false);
     const countdownLength = 3;
     const [count, setCount] = useState<number>(1);
@@ -31,8 +26,10 @@ export default function GameWrapper({
         countdown(countdownLength);
     }
 
+    useEffect(() => console.log(points), [points]);
+
     function countdown(num: number) {
-        console.log(num)
+        console.log(num);
         setCount(num);
         if (num == 0) {
             setTimeout(() => navi('/'), 1000);
