@@ -1,10 +1,4 @@
-import React, {
-    createContext,
-    useContext,
-    useState,
-    ReactNode,
-    useEffect,
-} from 'react';
+import React, { createContext, useState, ReactNode, useEffect } from 'react';
 import StorageService from './storageService';
 
 // ADDING NEW VALUES:
@@ -19,12 +13,14 @@ import StorageService from './storageService';
 // HOW TO USE:
 // const { points, setPoints } = useStorage();
 
-interface StorageContextType {
+export interface StorageContextType {
     points: number;
     setPoints: (points: number) => void;
 }
 
-const StorageContext = createContext<StorageContextType | undefined>(undefined);
+export const StorageContext = createContext<StorageContextType | undefined>(
+    undefined
+);
 
 export const StorageProvider: React.FC<{ children: ReactNode }> = ({
     children,
@@ -52,13 +48,4 @@ export const StorageProvider: React.FC<{ children: ReactNode }> = ({
             {children}
         </StorageContext.Provider>
     );
-};
-
-export const useStorage = (): StorageContextType => {
-    //eslint-disable-line react-refresh/only-export-components
-    const context = useContext(StorageContext);
-    if (context === undefined) {
-        throw new Error('useStorage must be used within a StorageProvider');
-    }
-    return context;
 };
