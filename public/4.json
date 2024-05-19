@@ -1,0 +1,51 @@
+{
+  "id": 3,
+  "name": "Space Systemes",
+  "localizationTips": "Szukaj rakiety bądź łazika",
+  "localization": "sala 3.21",
+  "password": "1234",
+  "tasks": [
+    {
+      "id": 1,
+      "type": "info",
+      "title": "Infa Info",
+      "overview": "Info związane z kierunkiem Informatyka",
+      "description": "Dowiedz sie wiecej o Informatyce",
+      "configuration": {
+        "infos": {
+          "Co to informatyka?": "Informatyka to dziedzina nauki zajmująca się przetwarzaniem informacji oraz technologią komputerową. Obejmuje teoretyczne i praktyczne aspekty tworzenia, przechowywania, przetwarzania, przesyłania i zabezpieczania danych przy użyciu systemów komputerowych.",
+          "Czym zajmuje sie Programista?": "\nProgramista zajmuje się tworzeniem, testowaniem i utrzymywaniem oprogramowania komputerowego. Pisze kod w różnych językach programowania, takich jak Python, Java czy C++, aby zrealizować określone funkcje i zadania. Analizuje wymagania użytkowników oraz projektuje systemy i aplikacje, które spełniają te potrzeby. Rozwiązuje problemy i błędy w kodzie, dbając o jego optymalizację i wydajność. Programista współpracuje także z innymi specjalistami, takimi jak analitycy systemowi i testerzy, aby zapewnić wysoką jakość finalnego produkt"
+        },
+        "youtube": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "links": {
+          "Więcej o KN BIT": "https://knbit.edu.pl",
+          "Linkedin": "www.linkedin.com/company/bit-scientific-group-at-agh-university"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "mini-game",
+      "title": "inFA Wordle",
+      "overview": "Wordle związane z jezykami programowania",
+      "description": "Zgaaduj jezyki programowania",
+      "game": {
+        "id": 2,
+        "type": "Wordle",
+        "configuration": {}
+      }
+    },
+    {
+      "id": 3,
+      "type": "Task",
+      "title": "AI Task",
+      "overview": "Task zwiazany z AI",
+      "description": "Zdobądź hasło",
+      "taskConfig": {
+        "title": "Jakie jest hasło?",
+        "description": "Szukaj hasła w budynku, u oprowadzajacych albo robotów :D!",
+        "correctCode": "Haslo"
+      }
+    }
+  ]
+}

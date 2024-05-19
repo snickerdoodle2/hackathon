@@ -1,0 +1,63 @@
+{
+    "id": 2,
+    "name": "IoT",
+    "localizationTips": "Szukaj na 4 piętrze sali z robotami",
+    "localization": "sala 4.23",
+    "password": "1234",
+    "tasks": [
+        {
+            "id": 1,
+            "type": "info",
+            "title": "IoT Info",
+            "overview": "Info związane z IoT",
+            "description": "Dowiedz się czym jest Warstwa 4",
+            "configuration": {
+                "infos": {
+                    "Czym jest warstwa Transportowa": "Odpowiada za zapewnienie niezawodnej transmisji danych między komputerami w sieci. Zarządza segmentacją danych, kontrolą błędów, przepływem danych oraz zapewnia odpowiednie zarządzanie połączeniami.",
+                    "Do czego służy": "Służy do zapewnienia bezpiecznego i niezawodnego przesyłania danych między aplikacjami działającymi na różnych urządzeniach w sieci. Obsługuje segmentację danych, zarządzanie połączeniami, kontrolę przepływu oraz korekcję błędów, co gwarantuje, że dane są dostarczane kompletnie i w odpowiedniej kolejności."
+                },
+                "youtube": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                "links": {
+                    "Więcej informacji o warstwie transportowej": "https://pl.wikipedia.org/wiki/Model_OSI#Warstwa_transportowa",
+                    "Szczegółowy opis funkcji warstwy transportowej": "https://pl.wikipedia.org/wiki/Model_OSI#Warstwa_transportowa"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "type": "mini-game",
+            "title": "Sterowanie robotem",
+            "overview": "Minigra z robotem",
+            "description": "Poprowadź robota do kodu NFC i zdobywaj nagrody",
+            "configuration": {
+                "id": 2,
+                "type": "Robot",
+                "configuration": {}
+            }
+        },
+        {
+            "id": 3,
+            "type": "task",
+            "title": "IoT Task",
+            "overview": "Task związany z IoT",
+            "description": "Odpowiedz na pytanie i ciesz się dodatkowymi punktami",
+            "configuration": {
+                "title": "Sieci komputerowe",
+                "description": "W sali 4.22 odbędą się zajęcia praktyczne z sieci komputerowych pokazujące łączenie się routerów. Suma numerów obu routerów będzie kodem do wpisania w aplikacji",
+                "correctCode": "1234"
+            }
+        },
+        {
+            "id": 4,
+            "type": "task",
+            "title": "IoT Task",
+            "overview": "Task związany z IoT",
+            "description": "Odpowiedz na pytanie i ciesz się dodatkowymi punktami",
+            "configuration": {
+                "title": "Podaj kod z wyświetlacza MQTT",
+                "description": "W sali 4.23 dr Brzoza będzie wyświetlała podczas prezentacji na wyświetlaczu kod - wpisz go tutaj żeby zdobyć dodatkowe zdobyć dodatkowe punkty",
+                "correctCode": "1234"
+            }
+        }
+    ]
+}
