@@ -21,18 +21,18 @@ import Availability from '@/lib/availability';
 
 const Home = () => {
     const [animationClass, setAnimationClass] = useState('animate-pulse');
-    const [sectionId, setSectionId] = useState(0);
+    const [sectionId, setSectionId] = useState(4);
     const navigate = useNavigate();
 
     const isAvailable = (id: number) => {
-        if (id === 0) {
+        if (id === 4) {
             return true;
         }
         return Availability.isSectionAvailable(id);
     };
 
     const goToSection = (id: number) => {
-        if (!(sectionId == 0)) {
+        if (!(sectionId == 4)) {
             const fallbackRoute = `sections/${id}/tasks/`;
             navigate(fallbackRoute);
         }
@@ -40,7 +40,7 @@ const Home = () => {
 
     const handleClickLeft = () => {
         setAnimationClass('animate-spin2');
-        setSectionId((sectionId - 1) % 4);
+        setSectionId((sectionId - 1) % 5);
         setTimeout(() => {
             setAnimationClass('animate-pulse');
         }, 1000);
@@ -48,7 +48,7 @@ const Home = () => {
 
     const handleClickRight = () => {
         setAnimationClass('animate-spin2');
-        setSectionId((sectionId + 1) % 4);
+        setSectionId((sectionId + 1) % 5);
         setTimeout(() => {
             setAnimationClass('animate-pulse');
         }, 1000);
@@ -67,8 +67,8 @@ const Home = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className='drop-shadow-[0_0px_5px_rgba(0,0,0,1)]'>
-                    {isAvailable(1) && <p>Quiz - KN Bit</p>}
-                    {isAvailable(2) && <p>Wordle - Informatyka</p>}
+                    {isAvailable(0) && <p>Wordle - KN Bit</p>}
+                    {isAvailable(2) && <p>Quiz - Informatyka</p>}
                     {isAvailable(3) && <p>Nonogram - Space Systems</p>}
                 </CardContent>
             </Card>

@@ -31,7 +31,7 @@
             "description": "Odgadnij słowa związane z kołem naukowym BIT",
             "game": {
                 "id": 2,
-                "type": "mini-quiz",
+                "type": "Miniquiz",
                 "configuration": {}
             }
         },

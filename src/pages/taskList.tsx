@@ -236,13 +236,6 @@ const TaskLadder: React.FC = () => {
             if (status) {
                 console.log('Authorized section: ', sectionId);
 
-                toast({
-                    variant: 'default',
-                    title: 'Rozpoczynamy eksploracje',
-                    description: 'Dobrej zabawy!',
-                    duration: 2000,
-                });
-
                 navigate(`/sections/${sectionId}/tasks`);
             } else {
                 console.log('Not authorized section: ', sectionId);
