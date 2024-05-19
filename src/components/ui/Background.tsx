@@ -19,7 +19,7 @@ const Background = ({ children, animationClass }: BackgroundProps) => {
                     className='absolute top-[290px] animate-float'
                 />
             </div>
-            
+
             <div className='relative z-10 h-screen flex flex-col flex-1 py-12 px-6 font-poppins'>
                 {children}
             </div>
