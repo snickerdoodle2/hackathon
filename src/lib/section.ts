@@ -22,6 +22,7 @@ type Configuration = {
     name: string;
     localizationTips: string;
     localization: string;
+    password: string;
     tasks: Task[];
 };
 
@@ -44,11 +45,33 @@ class Section {
         return new Section(id, configData);
     }
 
+
     getConfigData() {
         return this.configData;
     }
 
     // isSecrionautohrized
+
+    authorizeSection(password: string) {
+        if (this.configData === null)
+            throw new Error('Section not initialized');
+
+        if (this.configData.password !== password) {
+            console.log('Wrong password', this.configData.password, password);
+            return false;
+        }
+
+        console.log(
+            'Access granted',
+            this.configData.password,
+            password,
+            this.configData.password == password
+        );
+        localStorage.setItem(`section-${this.configurationid}`, 'true');
+
+        return true;
+    }
+
 
     getTaskById(id: number) {
         const taskId = Number(id);

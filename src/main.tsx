@@ -9,7 +9,11 @@ import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
 import MiniQuiz from './pages/miniquiz';
+
 import Nono from './components/minigames/Nono';
+
+import AuthorizeSection from '@/pages/authorize_section.tsx';
+
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -36,6 +40,10 @@ const router = createBrowserRouter([
     {
         path: 'sections/:sectionId/tasks/:taskId/game',
         element: <GamePage />,
+    },
+    {
+        path: 'sections/:sectionId/authorize/:pass',
+        element: <AuthorizeSection />,
     },
     {
         path: '/info',
