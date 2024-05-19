@@ -24,10 +24,6 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: 'scoreboard',
-        element: <p>Scoreboard</p>,
-    },
-    {
         path: 'nono',
         element: <Nono onFinish={() => alert('xd')} />,
     },
