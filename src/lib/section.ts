@@ -1,19 +1,21 @@
-type Task =
-    | {
-          id: number;
-          title: string;
-          overview: string;
-          description: string;
-          game: {
-              id: number;
-              type: 'Wordle' | 'Nonogram';
-          };
-      }
-    | {
-          id: number;
-          type: string;
-          configuration: any;
-      };
+export type GameTask = {
+    id: number;
+    title: string;
+    overview: string;
+    description: string;
+    game: {
+        id: number;
+        type: 'Wordle' | 'Nonogram';
+    };
+};
+
+export type TextTask = {
+    id: number;
+    type: string;
+    configuration: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+};
+
+export type Task = GameTask | TextTask;
 
 type Configuration = {
     id: number;
@@ -25,11 +27,11 @@ type Configuration = {
 
 class Section {
     private configData: Configuration;
-    // @ts-ignore
+    // @ts-expect-error loool
     private configurationid: number;
 
     private constructor(id: number, configData: Configuration) {
-        // @ts-ignore
+        // @ts-expect-error loool
         this._configurationid = id;
         this.configData = configData;
     }

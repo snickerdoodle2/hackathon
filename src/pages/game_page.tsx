@@ -10,14 +10,16 @@ export default function GamePage() {
     const navigate = useNavigate();
     const { sectionId, taskId } = useParams();
 
-    const [section, setSection] = useState(null);
+    const [section, setSection] = useState<Section | undefined>(undefined);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error>();
 
     useEffect(() => {
         const fetchConfig = async () => {
             try {
-                const sectionInstance = await Section.createInstance(sectionId);
+                const sectionInstance = await Section.createInstance(
+                    parseInt(sectionId!)
+                );
                 setSection(sectionInstance);
             } catch (error) {
                 setError(error as Error);
@@ -37,11 +39,15 @@ export default function GamePage() {
         return <div>Error loading configuration: {error.message}</div>;
     }
 
-    if (!section) {
+    if (!section || !taskId) {
         return <div>Configuration not found</div>;
     }
 
-    const task = section.getTaskById(taskId);
+    const task = section.getTaskById(parseInt(taskId!));
+
+    if (!task || !('game' in task)) {
+        return <p>Task not found?</p>;
+    }
 
     const fallbackRoute = `/sections/${sectionId}/tasks`;
 
@@ -49,7 +55,6 @@ export default function GamePage() {
         <GameWrapper
             navigate={navigate}
             fallbackRoute={fallbackRoute}
-            sectionId={sectionId}
             task={task}
         />
     );
