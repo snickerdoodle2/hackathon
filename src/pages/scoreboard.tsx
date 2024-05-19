@@ -1,3 +1,4 @@
+import { StorageContext } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background';
 import {
     Card,
@@ -6,6 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { useContext } from 'react';
 
 type User = {
     name: string;
@@ -70,6 +72,14 @@ const Row: React.FC<{ user: User; index: number }> = ({ user, index }) => {
 };
 
 const Scoreboard = () => {
+    const context = useContext(StorageContext);
+
+    if (context === undefined) {
+        throw new Error('useStorage must be used within a StorageProvider');
+    }
+
+    const { points } = context;
+
     return (
         <Background animationClass='animate-pulse'>
             <Card className='w-full h-full bg-background/90'>
@@ -81,7 +91,7 @@ const Scoreboard = () => {
                 </CardHeader>
                 <CardContent>
                     <ul className='flex flex-col gap-4'>
-                        {mock
+                        {[{ name: 'Ty', score: points }, ...mock]
                             .sort((a, b) => b.score - a.score)
                             .map((p, i) => (
                                 <Row index={i} key={p.name} user={p} />
