@@ -7,12 +7,12 @@ export type GameTask = {
         id: number;
         type: 'Wordle' | 'Nonogram';
     };
-    type: 'Game';
+    type: 'Game' | "Info" | "XX";
+    configuration: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
 export type TextTask = {
     id: number;
-    type: 'Info';
     title: string;
     overview: string;
     description: string;
@@ -20,21 +20,12 @@ export type TextTask = {
         id: number;
         type: 'Wordle' | 'Nonogram';
     };
+    type: 'Info' | 'Game';
+    text: string;
     configuration: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
-type JsonTask = {
-    id: number;
-    overview: string;
-    description: string;
-    title: string;
-    type: string;
-    game: {
-        id: number;
-    };
-};
-
-export type Task = GameTask | TextTask | JsonTask;
+export type Task = GameTask | TextTask;
 
 type Configuration = {
     id: number;
