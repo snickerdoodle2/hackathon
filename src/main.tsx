@@ -14,7 +14,6 @@ import Nono from './components/minigames/Nono';
 
 import AuthorizeSection from '@/pages/authorize_section.tsx';
 
-
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
     {
