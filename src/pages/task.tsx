@@ -1,22 +1,67 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import GamePageLoading from '@/components/GamePage/GamePageLoading';
+import Section from '@/lib/section';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Przykładowe dane JSON
-const jsonData = {
-    title: 'Wykład prof Gajęckiego',
-    description:
-        'W sali 1.41 prof Gajęcki będzie prowadził wykład - w trakcie niego poda wam kod do wpisania, który pozwoli wam zdobyć dodatkowe punkty',
-    correctCode: '1234',
-};
+// const jsonData = {
+//     title: 'Wykład prof Gajęckiego',
+//     description:
+//         'W sali 1.41 prof Gajęcki będzie prowadził wykład - w trakcie niego poda wam kod do wpisania, który pozwoli wam zdobyć dodatkowe punkty',
+//     correctCode: '1234',
+// };
 
 const Task: React.FC = () => {
     const navigate = useNavigate();
     const [code, setCode] = useState('');
 
+    const { sectionId, taskId } = useParams();
+
+    const [section, setSection] = useState<Section | undefined>(undefined);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error>();
+
+    useEffect(() => {
+        const fetchConfig = async () => {
+            try {
+                const sectionInstance = await Section.createInstance(
+                    parseInt(sectionId!)
+                );
+                setSection(sectionInstance);
+            } catch (error) {
+                setError(error as Error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchConfig();
+    }, [sectionId]);
+
+    if (loading) {
+        return <GamePageLoading />;
+    }
+
+    if (error) {
+        return <div>Error loading configuration: {error.message}</div>;
+    }
+
+    if (!section || !taskId) {
+        return <div>Configuration not found</div>;
+    }
+
+    const task = section.getTaskById(parseInt(taskId!));
+
+    if (!task || task.type != 'Task') {
+        return <p>Task not found?</p>;
+    }
+
+    const jsonData = task.configuration;
+
     const handleBackClick = () => {
-        navigate('/');
+        navigate(-1);
     };
 
     const handleSubmit = () => {
@@ -30,7 +75,7 @@ const Task: React.FC = () => {
                 draggable: true,
                 progress: undefined,
             });
-            setTimeout(() => navigate('/'), 2500); // Przekierowanie po 2.5 sekundy
+            setTimeout(() => navigate(-1), 2500); // Przekierowanie po 2.5 sekundy
         } else {
             toast.error('Kod jest niepoprawny. Spróbuj ponownie.', {
                 position: 'top-center',

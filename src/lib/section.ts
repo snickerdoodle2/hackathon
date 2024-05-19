@@ -26,6 +26,7 @@ type JsonTask = {
     game: {
         id: number;
     };
+    configuration: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
 export type Task = GameTask | TextTask | JsonTask;

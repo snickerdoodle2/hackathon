@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
     StorageContext,
     StorageContextType,
 } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background';
+<<<<<<< Updated upstream
 import {
     Card,
     CardContent,
@@ -14,32 +15,83 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
+=======
+import Section from '@/lib/section';
+import GamePageLoading from '@/components/GamePage/GamePageLoading';
+
+>>>>>>> Stashed changes
 
 const Info: React.FC = () => {
     const navigate = useNavigate();
 
+    const { sectionId, taskId } = useParams();
+
+    const [section, setSection] = useState<Section | undefined>(undefined);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error>();
+
+    useEffect(() => {
+        const fetchConfig = async () => {
+            try {
+                const sectionInstance = await Section.createInstance(
+                    parseInt(sectionId!)
+                );
+                setSection(sectionInstance);
+            } catch (error) {
+                setError(error as Error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchConfig();
+    }, [sectionId]);
+
+    if (loading) {
+        return <GamePageLoading />;
+    }
+
+    if (error) {
+        return <div>Error loading configuration: {error.message}</div>;
+    }
+
+    if (!section || !taskId) {
+        return <div>Configuration not found</div>;
+    }
+
+    const task = section.getTaskById(parseInt(taskId!));
+
+    if (!task || task.type != 'Info') {
+        return <p>Task not found?</p>;
+    }
+
+    const jsonData = task.configuration;
+
+
+
     // Przykładowy JSON
-    const jsonData = {
-        infos: {
-            'Czym jest BIT':
-                'Koło naukowe BIT to przede wszystkim miejsce, gdzie studenci AGH mogą rozwijać swoje zainteresowania i się nimi dzielić. Znajdziemy tutaj ludzi zainteresowanych nowoczesnymi metodami tworzenia oprogramowania, aktualnymi technologiami webowymi, a także algorytmami czy sztuczną inteligencją.',
-            'Komu pomagamy':
-                'Oprócz rozwijania swoich pasji, dzielimy się też wiedzą z zakresu studiów, prowadząc zajęcia wprowadzające w dziedziny matematyki i informatyki dla osób, które wcześniej nie miały z danymi zagadnieniami styczności. Wszystko po to, żeby wymienić się doświadczeniem i szybciej oraz lepiej przygotować się na zajęcia na uczelni.',
-        },
-        youtube: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-        links: {
-            'Więcej o KN BIT': 'https://knbit.edu.pl',
-            Linkedin:
-                'https://www.linkedin.com/company/bit-scientific-group-at-agh-university/?originalSubdomain=pl',
-        },
-    };
+    // const jsonData = {
+    //     infos: {
+    //         'Czym jest BIT':
+    //             'Koło naukowe BIT to przede wszystkim miejsce, gdzie studenci AGH mogą rozwijać swoje zainteresowania i się nimi dzielić. Znajdziemy tutaj ludzi zainteresowanych nowoczesnymi metodami tworzenia oprogramowania, aktualnymi technologiami webowymi, a także algorytmami czy sztuczną inteligencją.',
+    //         'Komu pomagamy':
+    //             'Oprócz rozwijania swoich pasji, dzielimy się też wiedzą z zakresu studiów, prowadząc zajęcia wprowadzające w dziedziny matematyki i informatyki dla osób, które wcześniej nie miały z danymi zagadnieniami styczności. Wszystko po to, żeby wymienić się doświadczeniem i szybciej oraz lepiej przygotować się na zajęcia na uczelni.',
+    //     },
+    //     youtube: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    //     links: {
+    //         'Więcej o KN BIT': 'https://knbit.edu.pl',
+    //         Linkedin:
+    //             'https://www.linkedin.com/company/bit-scientific-group-at-agh-university/?originalSubdomain=pl',
+    //     },
+    // };
 
     // Przekształć dane JSON na tablicę sekcji
-    const sections = Object.entries(jsonData.infos);
+
+    const sections: any = Object.entries(jsonData.infos);
 
     // Tworzenie sekcji na podstawie danych JSON
     const renderSections = () => {
-        return sections.map(([title, content], index) => (
+        return sections.map(([title, content]: any, index: React.Key | null | undefined) => (
             <div key={index} className='mt-4'>
                 <h2 className='text-lg font-bold'>{title}</h2>
                 <p className='text-base'>{content}</p>
@@ -78,7 +130,7 @@ const Info: React.FC = () => {
                             ([text, url], index) => (
                                 <li key={index}>
                                     <a
-                                        href={url}
+                                        href={url ? `${url}` : "/"}
                                         className='text-blue-500 hover:underline'
                                     >
                                         {text}

@@ -45,11 +45,11 @@ const router = createBrowserRouter([
         element: <AuthorizeSection />,
     },
     {
-        path: 'sections/1/tasks/2/game',
+        path: 'sections/:sectionId/tasks/:taskId/info',
         element: <Info />,
     },
     {
-        path: '/task',
+        path: '/sections/:sectionId/tasks/:taskId/task',
         element: <Task />,
     },
     {
