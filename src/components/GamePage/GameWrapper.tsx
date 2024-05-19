@@ -28,8 +28,8 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
     function onFinish(gained: number) {
         setPoints(points + gained);
         toast({
-            title: "Gratulacje!",
-            description: `Zdobyłeś ${gained} punktów! Zaraz wrócisz na poprzednią stronę...`
+            title: 'Gratulacje!',
+            description: `Zdobyłeś ${gained} punktów! Zaraz wrócisz na poprzednią stronę...`,
         });
         setTimeout(() => {
             navi(-1);
