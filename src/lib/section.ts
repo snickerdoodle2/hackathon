@@ -8,7 +8,7 @@ class Section {
     }
 
     static async createInstance(id: number) {
-        const configuration = await fetch(`/${id}.json`);
+        const configuration = await fetch(`/tasks/${id}.json`);
         const configData = await configuration.json();
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
