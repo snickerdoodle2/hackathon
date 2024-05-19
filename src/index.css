@@ -2,6 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes spin2 {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.animate-spin2 {
+    animation: spin2 1s ease-in-out infinite;
+}
+
+@keyframes pulse2 {
+    50% {
+        shadow: 0px 10px -14px 14px #fff;
+    }
+}
+.animate-pulse2 {
+    animation: pulse2 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animated-background {
+    background-size: 400%;
+
+    -webkit-animation: animation 3s ease infinite;
+    -moz-animation: animation 3s ease infinite;
+    animation: animation 3s ease infinite;
+}
+
+@keyframes animation {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animated-background2 {
+    background-size: 200%;
+
+    -webkit-animation: animation 8s ease infinite;
+    -moz-animation: animation 9s ease infinite;
+    animation: animation 9s ease infinite;
+}
+
+@keyframes animation {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;

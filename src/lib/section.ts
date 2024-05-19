@@ -7,21 +7,35 @@ export type GameTask = {
         id: number;
         type: 'Wordle' | 'Nonogram';
     };
+    type: 'Game';
 };
 
 export type TextTask = {
     id: number;
-    type: string;
+    type: 'Info';
+    title: string;
+    overview: string;
     configuration: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
-export type Task = GameTask | TextTask;
+type JsonTask = {
+    id: number;
+    overview: string;
+    title: string;
+    type: 'Task';
+    game: {
+        id: number;
+    };
+};
+
+export type Task = GameTask | TextTask | JsonTask;
 
 type Configuration = {
     id: number;
     name: string;
     localizationTips: string;
     localization: string;
+    password: string;
     tasks: Task[];
 };
 
@@ -37,11 +51,42 @@ class Section {
     }
 
     static async createInstance(id: number) {
-        // FIXME: can fail
-        const configuration = await fetch(`/${id}.json`);
-        const configData = (await configuration.json()) as Configuration;
-
+        const configuration = await fetch(`/sections/${id}.json`);
+        const configData = await configuration.json();
         return new Section(id, configData);
+    }
+    getHint() {
+        return this.configData.localizationTips;
+    }
+
+    getName() {
+        return this.configData.name;
+    }
+
+    getConfigData() {
+        return this.configData;
+    }
+
+    // isSecrionautohrized
+
+    authorizeSection(password: string) {
+        if (this.configData === null)
+            throw new Error('Section not initialized');
+
+        if (this.configData.password !== password) {
+            console.log('Wrong password', this.configData.password, password);
+            return false;
+        }
+
+        console.log(
+            'Access granted',
+            this.configData.password,
+            password,
+            this.configData.password == password
+        );
+        localStorage.setItem(`section-${this.configurationid}`, 'true');
+
+        return true;
     }
 
     getTaskById(id: number) {

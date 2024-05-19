@@ -45,7 +45,7 @@ export default function GamePage() {
 
     const task = section.getTaskById(parseInt(taskId!));
 
-    if (!task || !('game' in task)) {
+    if (!task || task.type != 'Game') {
         return <p>Task not found?</p>;
     }
 

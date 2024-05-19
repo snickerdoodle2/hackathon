@@ -1,7 +1,6 @@
 // TODO: naprawic ten paski po prawej
 import { useEffect, useState } from 'react';
 import Cell from '../nonogram/Cell';
-import Webcam from 'react-webcam';
 // import { useNavigate } from 'react-router-dom';
 // import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 // import WinPopup from '../nonogram/WinPopup';
@@ -153,8 +152,6 @@ export default function Nono({ onFinish }: Props) {
         }
     }, [wrong]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const [isShown, setShown] = useState<boolean>(false);
-
     return (
         <div
             style={{
@@ -166,10 +163,6 @@ export default function Nono({ onFinish }: Props) {
                 maxHeight: nono_height + top_num_height,
             }}
         >
-            {isShown ? <Webcam /> : null}
-            <button onClick={() => setShown(isShown ? false : true)}>
-                kamera
-            </button>
             <div
                 style={{
                     display: 'flex',

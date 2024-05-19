@@ -11,6 +11,11 @@ import Task from './pages/task';
 import Prizes from '@/pages/prizes';
 import MiniQuiz from './pages/miniquiz';
 import Scoreboard from './pages/scoreboard';
+import Welcome from './pages/Welcome';
+
+import Nono from './components/minigames/Nono';
+
+import AuthorizeSection from '@/pages/authorize_section.tsx';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -19,16 +24,28 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
+        path: 'scoreboard',
+        element: <p>Scoreboard</p>,
+    },
+    {
+        path: 'nono',
+        element: <Nono onFinish={() => alert('xd')} />,
+    },
+    {
         path: 'taskList', //sections/:sectionId/
         element: <TaskLadder />,
     },
     {
         path: 'sections/:sectionId/tasks/',
-        element: <div>tasklist</div>,
+        element: <TaskLadder />,
     },
     {
         path: 'sections/:sectionId/tasks/:taskId/game',
         element: <GamePage />,
+    },
+    {
+        path: 'sections/:sectionId/authorize/:pass',
+        element: <AuthorizeSection />,
     },
     {
         path: '/info',
@@ -56,6 +73,10 @@ const router = createBrowserRouter([
         // i to tak whatever
         // NOTE: chyba to musi być na dole (nie mam pojęcia)
         element: <p>404 - not found :(</p>,
+    },
+    {
+        path: '/welcome',
+        element: <Welcome />,
     },
 ]);
 

@@ -3,6 +3,7 @@
     "name": "Koło Naukowe Bit",
     "localizationTips": "Szukaj dużego napisu KN BIT",
     "localization": "sala 1.38",
+    "password": "1234",
     "tasks": [
         {
             "id": 1,
@@ -13,7 +14,8 @@
                 "id": 1,
                 "type": "Wordle",
                 "configuration": {}
-            }
+            },
+            "type": "Game"
         },
         {
             "id": 2,
