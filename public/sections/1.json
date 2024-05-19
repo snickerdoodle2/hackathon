@@ -33,6 +33,18 @@
                 "configuration": {}
             },
             "type": "Game"
+        },
+        {
+            "id": 4,
+            "title": "Bit Miniquiz",
+            "overview": "Wordle związane z KN BIT",
+            "description": "Odgadnij słowa związane z kołem naukowym BIT",
+            "game": {
+                "id": 4,
+                "type": "Miniquiz",
+                "configuration": {}
+            },
+            "type": "Game"
         }
     ]
 }
