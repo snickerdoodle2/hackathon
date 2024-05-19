@@ -25,9 +25,9 @@ import { StorageContext } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background.tsx';
 
 enum Option {
-    Task = 'task',
-    Info = 'info',
-    Game = 'game',
+    Task = 'Task',
+    Info = 'Info',
+    Game = 'Game',
 }
 interface LocalTask {
     id: number;
@@ -133,6 +133,7 @@ const TaskLadder: React.FC = () => {
                               : task.type === 'Info'
                                 ? Option.Info
                                 : (() => {
+                                    console.log(`Unknown task found`);
                                       throw new Error(`Unknown task `);
                                   })(),
                     name: 'unknownRR',
