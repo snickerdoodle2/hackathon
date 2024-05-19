@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import GameHelper from './GameHelper';
 import { Button } from '../ui/button';
 import WinPopup from '../nonogram/WinPopup';
 import { type GameTask } from '@/lib/section';
+import { StorageContext } from '@/components/Storage/storageContext.tsx';
 
 interface Props {
     navigate: NavigateFunction;
@@ -16,13 +17,21 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
     const [shouldShow, setShouldShow] = useState<boolean>(false);
     const countdownLength = 3;
     const [count, setCount] = useState<number>(1);
-    const [points, setPoints] = useState<number>(0);
+    // const [points, setPoints] = useState<number>(0);
 
     const navi = useNavigate();
 
+    const context = useContext(StorageContext);
+
+    if (context === undefined) {
+        throw new Error('useStorage must be used within a StorageProvider');
+    }
+
+    const { points, setPoints } = context;
+
     function onFinish(gained: number) {
         setShouldShow(true);
-        setPoints((points) => points + gained);
+        setPoints(points + gained);
         countdown(countdownLength);
     }
 
@@ -32,7 +41,7 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
         console.log(num);
         setCount(num);
         if (num == 0) {
-            setTimeout(() => navi('/'), 1000);
+            setTimeout(() => navi(-1), 1000);
         }
         setTimeout(() => countdown(num - 1), 1000);
     }

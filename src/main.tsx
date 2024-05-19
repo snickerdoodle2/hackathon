@@ -4,6 +4,7 @@ import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from '@/pages/home.tsx';
 import TaskLadder from './pages/taskList';
+import { StorageProvider } from './components/Storage/storageContext';
 
 import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
@@ -78,6 +79,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <StorageProvider>
+            <RouterProvider router={router} />
+        </StorageProvider>
     </React.StrictMode>
 );
