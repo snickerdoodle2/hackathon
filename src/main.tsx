@@ -9,6 +9,9 @@ import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
 import MiniQuiz from './pages/miniquiz';
+
+import Nono from './components/minigames/Nono';
+
 import AuthorizeSection from '@/pages/authorize_section.tsx';
 
 // TODO: jakies inne routy moze?
@@ -22,12 +25,16 @@ const router = createBrowserRouter([
         element: <p>Scoreboard</p>,
     },
     {
+        path: 'nono',
+        element: <Nono onFinish={() => alert('xd')} />,
+    },
+    {
         path: 'taskList', //sections/:sectionId/
         element: <TaskLadder />,
     },
     {
         path: 'sections/:sectionId/tasks/',
-        element: <div>tasklist</div>,
+        element: <TaskLadder />,
     },
     {
         path: 'sections/:sectionId/tasks/:taskId/game',
