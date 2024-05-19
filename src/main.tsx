@@ -2,22 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from '@/pages/home.tsx';
+import TaskLadder from './pages/taskList';
 
 import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
+import MiniQuiz from './pages/miniquiz';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <p>Home</p>,
+        element: <Home />,
     },
     {
         path: 'scoreboard',
         element: <p>Scoreboard</p>,
     },
     {
+        path: 'taskList', //sections/:sectionId/
+        element: <TaskLadder />,
+    },
         path: 'sections/:sectionId/tasks/',
         element: <div>tasklist</div>,
     },
@@ -32,6 +38,10 @@ const router = createBrowserRouter([
     {
         path: '/task',
         element: <Task />,
+    },
+    {
+        path: '/mini-quiz',
+        element: <MiniQuiz />,
     },
     {
         path: '*',
