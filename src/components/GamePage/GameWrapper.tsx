@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { type GameTask } from '@/lib/section';
 import { useToast } from '../ui/use-toast';
 import { StorageContext } from '@/components/Storage/storageContext.tsx';
+import Background from '../ui/Background';
 
 interface Props {
     navigate: NavigateFunction;
@@ -37,10 +38,10 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
     }
 
     return (
-        <Card className='max-h-full h-full max-w-full bg-background/90'>
-            <div className='flex justify-center items-center h-32 text-white'>
+        <Background animationClass='animate-pulse'>
+            <div className='flex justify-center items-center h-32 text-white pb-4'>
                 <Card
-                    className='m-2'
+                    className='w-full'
                     style={{
                         background:
                             'linear-gradient(to right, #F48535, #F4A435)',
@@ -52,24 +53,21 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
                     </CardHeader>
                 </Card>
             </div>
-            <div
-                className='flex flex-col justify-center items-center flex-grow'
-                style={{ height: 'calc(100% - 12rem)' }}
-            >
+            <Card className='max-h-full h-full max-w-full bg-background/90 flex flex-col'>
                 <GameHelper type={task.game.type} onFinish={onFinish} />
-            </div>
-            <div className='flex justify-center items-center h-16 text-white'>
-                <Button
-                    className='h-max'
-                    style={{
-                        background:
-                            'linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114))',
-                    }}
-                    onClick={() => navigate(fallbackRoute)}
-                >
-                    Stop Task
-                </Button>
-            </div>
-        </Card>
+                <div className='flex justify-center items-center h-16 text-white'>
+                    <Button
+                        className='h-max'
+                        style={{
+                            background:
+                                'linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114))',
+                        }}
+                        onClick={() => navigate(fallbackRoute)}
+                    >
+                        Stop Task
+                    </Button>
+                </div>
+            </Card>
+        </Background>
     );
 }

@@ -129,12 +129,12 @@ const TaskLadder: React.FC = () => {
                         task.type === 'Game'
                             ? Option.Game
                             : task.type === 'Task'
-                              ? Option.Task
-                              : task.type === 'Info'
-                                ? Option.Info
-                                : (() => {
-                                      throw new Error(`Unknown task `);
-                                  })(),
+                                ? Option.Task
+                                : task.type === 'Info'
+                                    ? Option.Info
+                                    : (() => {
+                                        throw new Error(`Unknown task `);
+                                    })(),
                     name: 'unknownRR',
                 };
                 ttasks.push(newTask);
@@ -238,42 +238,42 @@ const TaskLadder: React.FC = () => {
             section != undefined &&
             tasks[0] != undefined && (
                 <Background animationClass='animate-pulse'>
+                    <div className='task-ladder-title-container pb-4'>
+                        <Card
+                            className='task-ladder-card w-full'
+                            style={{
+                                background:
+                                    'linear-gradient(to right, #F48535, #F4A435)',
+                                height: '10svh',
+                                padding: '0',
+                                margin: '0',
+                            }}
+                        >
+                            <CardHeader
+                                style={{
+                                    padding: '4% 2% 0% 4%',
+                                    margin: '0',
+                                    position: 'relative',
+                                }}
+                            >
+                                <CardTitle>{sectionName}</CardTitle>
+                                <CardDescription style={{ color: 'white' }}>
+                                    {taskListDescription}
+                                </CardDescription>
+                                <div className='task-ladder-back'>
+                                    <RiHome6Line
+                                        style={{ color: 'white' }}
+                                        size={30}
+                                        onClick={() => handleHomeClick()}
+                                    />
+                                </div>
+                            </CardHeader>
+                        </Card>
+                    </div>
                     <Card
                         className='bg-background/90 h-full w-full overflow-hidden py-4 _container'
                         onClick={() => handleContainerClick()}
                     >
-                        <div className='task-ladder-title-container'>
-                            <Card
-                                className='task-ladder-card'
-                                style={{
-                                    background:
-                                        'linear-gradient(to right, #F48535, #F4A435)',
-                                    height: '10svh',
-                                    padding: '0',
-                                    margin: '0',
-                                }}
-                            >
-                                <CardHeader
-                                    style={{
-                                        padding: '4% 2% 0% 4%',
-                                        margin: '0',
-                                        position: 'relative',
-                                    }}
-                                >
-                                    <CardTitle>{sectionName}</CardTitle>
-                                    <CardDescription style={{ color: 'white' }}>
-                                        {taskListDescription}
-                                    </CardDescription>
-                                    <div className='task-ladder-back'>
-                                        <RiHome6Line
-                                            style={{ color: 'white' }}
-                                            size={30}
-                                            onClick={() => handleHomeClick()}
-                                        />
-                                    </div>
-                                </CardHeader>
-                            </Card>
-                        </div>
                         <div className='task-ladder'>
                             <div className='task-ladder-score'>
                                 <p>{points}</p>{' '}
@@ -297,7 +297,7 @@ const TaskLadder: React.FC = () => {
                                         to={`task-${0}`}
                                         borderColor={
                                             tasks != undefined &&
-                                            tasks[0].completed
+                                                tasks[0].completed
                                                 ? '#191919'
                                                 : '#d1d5db'
                                         }
@@ -379,11 +379,11 @@ const TaskLadder: React.FC = () => {
                                                         backgroundColor:
                                                             clickedButton ===
                                                                 task.id &&
-                                                            !task.completed
+                                                                !task.completed
                                                                 ? '#90e16f'
                                                                 : task.completed
-                                                                  ? '#4ab52f'
-                                                                  : '',
+                                                                    ? '#4ab52f'
+                                                                    : '',
                                                         width: '40px',
                                                         height: '40px',
                                                         padding: '0',

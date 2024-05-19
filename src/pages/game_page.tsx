@@ -53,12 +53,10 @@ export default function GamePage() {
     const fallbackRoute = `/sections/${sectionId}/tasks`;
 
     return (
-        <Background animationClass='animate-pulse'>
-            <GameWrapper
-                navigate={navigate}
-                fallbackRoute={fallbackRoute}
-                task={task}
-            />
-        </Background>
+        <GameWrapper
+            navigate={navigate}
+            fallbackRoute={fallbackRoute}
+            task={task}
+        />
     );
 }
