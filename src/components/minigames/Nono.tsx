@@ -153,7 +153,6 @@ export default function Nono({ onFinish }: Props) {
         }
     }, [wrong]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const [isShown, setShown] = useState<boolean>(false);
 
     return (
         <div
@@ -166,10 +165,8 @@ export default function Nono({ onFinish }: Props) {
                 maxHeight: nono_height + top_num_height,
             }}
         >
-            {isShown ? <Webcam /> : null}
-            <button onClick={() => setShown(isShown ? false : true)}>
-                kamera
-            </button>
+            
+
             <div
                 style={{
                     display: 'flex',

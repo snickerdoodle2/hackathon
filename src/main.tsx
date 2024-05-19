@@ -9,6 +9,8 @@ import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
 import MiniQuiz from './pages/miniquiz';
+import Welcome from './pages/Welcome';
+import Scoreboard from './pages/Scoreboard.tsx';
 
 import Nono from './components/minigames/Nono';
 
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
         // i to tak whatever
         // NOTE: chyba to musi być na dole (nie mam pojęcia)
         element: <p>404 - not found :(</p>,
+    },
+    {
+        path: '/welcome',
+        element: <Welcome />,
     },
 ]);
 
