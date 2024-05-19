@@ -1,25 +1,51 @@
 {
     "id": 2,
-    "name": "IoT",
-    "localizationTips": "Popytaj o dziekana G",
+    "name": "Informatyka WI",
+    "localizationTips": "Szukaj Pana z szarym wąsem!",
     "localization": "sala 1.38",
+    "password": "1234",
     "tasks": [
         {
             "id": 1,
-            "title": "Bit Wordle",
-            "overview": "Wordle związane z KN BIT",
-            "description": "Odgadnij słowa związane z kołem naukowym BIT",
-            "game": {
-                "id": 1,
-                "type": "Wordle",
-                "configuration": {}
-            },
-            "type": "Game"
+            "type": "Info",
+            "title": "Infa Info",
+            "overview": "Info związane kierunkiem Informatyka",
+            "description": "Info związane kierunkiem Informatyka",
+            "configuration": {
+                "infos": {
+                    "Czym jest Informatyka": "Informatyka to dziedzina nauki zajmująca się przetwarzaniem informacji oraz technologią komputerową. Obejmuje teoretyczne i praktyczne aspekty tworzenia, przechowywania, przetwarzania, przesyłania i zabezpieczania danych przy użyciu systemów komputerowych.",
+                    "Kto to programista?": "Programista zajmuje się tworzeniem, testowaniem i utrzymywaniem oprogramowania komputerowego. Pisze kod w różnych językach programowania, takich jak Python, Java czy C++, aby zrealizować określone funkcje i zadania. Analizuje wymagania użytkowników oraz projektuje systemy i aplikacje, które spełniają te potrzeby. Rozwiązuje problemy i błędy w kodzie, dbając o jego optymalizację i wydajność. Programista współpracuje także z innymi specjalistami, takimi jak analitycy systemowi i testerzy, aby zapewnić wysoką jakość finalnego produktu."
+                },
+                "youtube": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                "links": {
+                    "Więcej o KN BIT": "https://knbit.edu.pl",
+                    "Linkedin": "www.linkedin.com/company/bit-scientific-group-at-agh-university"
+                }
+            }
         },
         {
             "id": 2,
-            "type": "Info",
-            "configuration": {}
+            "type": "Game",
+            "title": "Quiz",
+            "overview": "Quiz zwiazany z infromatyką",
+            "description": "Odgadnij słowa związane z kołem naukowym BIT",
+            "game": {
+                "id": 2,
+                "type": "mini-quiz",
+                "configuration": {}
+            }
+        },
+        {
+            "id": 3,
+            "type": "Task",
+            "title": "Znajdz hasło",
+            "overview": "Wpisz hasło powiazane z informatyka",
+            "description": "Wpisz hasło powiazane z informatyka",
+            "configuration": {
+                "title": "Znajdz hasło",
+                "description": "Dowiedz sie jakie jest tegoroczne hasło",
+                "correctCode": "oracle"
+            }
         }
     ]
 }
