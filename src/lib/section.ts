@@ -15,6 +15,7 @@ export type TextTask = {
     type: 'Info';
     title: string;
     overview: string;
+    description: string;
     game: {
         id: number;
         type: 'Wordle' | 'Nonogram';
@@ -25,6 +26,7 @@ export type TextTask = {
 type JsonTask = {
     id: number;
     overview: string;
+    description: string;
     title: string;
     type: string;
     game: {
