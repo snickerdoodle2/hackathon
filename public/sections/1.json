@@ -3,6 +3,7 @@
     "name": "Koło Naukowe Bit",
     "localizationTips": "Szukaj dużego napisu KN BIT",
     "localization": "sala 1.38",
+    "password": "1234",
     "tasks": [
         {
             "id": 1,
@@ -13,12 +14,24 @@
                 "id": 1,
                 "type": "Wordle",
                 "configuration": {}
-            }
+            },
+            "type": "Game"
         },
         {
             "id": 2,
             "type": "Info",
             "configuration": {}
+        },
+        {
+            "id": 3,
+            "title": "Bit Nono",
+            "overview": "Wordle związane z KN BIT",
+            "description": "Odgadnij słowa związane z kołem naukowym BIT",
+            "game": {
+                "id": 3,
+                "type": "Nonogram",
+                "configuration": {}
+            }
         }
     ]
 }

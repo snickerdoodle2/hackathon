@@ -6,6 +6,7 @@ interface BackgroundProps {
 }
 
 const Background = ({ children, animationClass }: BackgroundProps) => {
+
     return (
         <div
             className='animated-background2
