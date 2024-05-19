@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Pad XBOX",
+        "price": 900
+    },
+    {
+        "id": 2,
+        "name": "Termos",
+        "price": 400
+    },
+     {
+        "id": 1,
+        "name": "Brelok do kluczy",
+        "price": 50
+    },
+    {
+        "id": 2,
+        "name": "Kubek",
+        "price": 30
+    },
+    {
+        "id": 3,
+        "name": "Notatnik",
+        "price": 20
+    },
+    {
+        "id": 4,
+        "name": "Długopis",
+        "price": 10
+    },
+    {
+        "id": 5,
+        "name": "Plecak na laptopa",
+        "price": 150
+    },
+    {
+        "id": 6,
+        "name": "Torba na zakupy",
+        "price": 40
+    },
+    {
+        "id": 7,
+        "name": "Powerbank",
+        "price": 100
+    }
+]

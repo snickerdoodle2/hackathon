@@ -1,35 +1,13 @@
 import Background from "@/components/ui/Background";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 type Prize = {
     id: number
     name: string;
     price: number
 }
-
-const items: Prize[] = [
-    {
-        id: 1,
-        name: "Pad XBOX",
-        price: 900
-    },
-    {
-        id: 2,
-        name: "Pad XBOX",
-        price: 900
-    },
-    {
-        id: 3,
-        name: "Pad XBOX",
-        price: 900
-    },
-    {
-        id: 4,
-        name: "Pad XBOX",
-        price: 900
-    },
-]
 
 const Row: React.FC<{ prize: Prize, onClick: () => void }> = ({ prize, onClick }) => {
     return <li className="grid grid-cols-[7fr_1fr_2fr] border-b last:border-0 justify-center items-center gap-4 pb-3">
@@ -47,15 +25,42 @@ const Prizes = () => {
         }
     }
 
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [prizes, setPrizes] = useState<Prize[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const res = await fetch('/prizes.json');
+            if (!res.ok) {
+                setError(true);
+                return;
+            }
+
+            const tmp = await res.json() as Prize[];
+            tmp.sort((a, b) => b.price - a.price);
+            setPrizes(tmp);
+            setLoading(false);
+        })()
+    }, [])
+
+    if (error) {
+        return <p>Error :(</p>
+    }
+
+    if (loading) {
+        return <p>Loading...</p>
+    }
+
     return <Background>
-        <Card className="w-full h-full ">
+        <Card className="w-full h-full bg-background/90">
             <CardHeader>
                 <CardTitle>Nagrody</CardTitle>
                 <CardDescription>Wymień zdobyte przez siebie punkty na super nagrody!</CardDescription>
             </CardHeader>
             <CardContent >
                 <ul className="flex flex-col gap-4">
-                    {items.map(p => <Row key={p.id} prize={p} onClick={selectItem(p.id)} />)}
+                    {prizes.map(p => <Row key={p.id} prize={p} onClick={selectItem(p.id)} />)}
                 </ul>
             </CardContent>
         </Card>
