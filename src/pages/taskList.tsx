@@ -20,14 +20,14 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { useNavigate, useParams } from 'react-router-dom';
-import Section from '@/lib/section';
+import Section, { Task } from '@/lib/section';
 
 enum Option {
     Task = 'task',
     Info = 'info',
     Game = 'game',
 }
-interface Task {
+interface LocalTask {
     id: number;
     name: string;
     message: string;
@@ -84,7 +84,7 @@ const TaskLadder: React.FC = () => {
     const [sectionName, setSectionName] = useState<string | undefined>(
         undefined
     );
-    const [tasks, setTasks] = useState<Task[]>([]);
+    const [tasks, setTasks] = useState<LocalTask[]>([]);
     const storedScore = localStorage.getItem('score');
     const score = storedScore ? parseInt(storedScore) : 0;
     const navigate = useNavigate();
@@ -105,23 +105,15 @@ const TaskLadder: React.FC = () => {
         };
         fetchConfig();
     }, [sectionId]);
-    interface JsonTask {
-        id: number;
-        overview: string;
-        title: string;
-        type: string;
-        game: {
-            id: number;
-        };
-    }
+
     // this use effect sets all data reqired for task ladder
     useEffect(() => {
         if (!loading && section != undefined) {
-            const ttasks: Task[] = [];
+            const ttasks: LocalTask[] = [];
             setTaskListDescription(section.getConfigData().localization);
             setSectionName(section.getConfigData().name);
-            section.getConfigData().tasks.forEach((task: JsonTask) => {
-                const newTask: Task = {
+            section.getConfigData().tasks.forEach((task: Task) => {
+                const newTask: LocalTask = {
                     id: task.id,
                     message: task.overview,
                     completed: false,
@@ -129,7 +121,7 @@ const TaskLadder: React.FC = () => {
                     option:
                         task.type === 'Game'
                             ? Option.Game
-                            : task.type === 'Task'
+                            : task.type === 'LocalTask'
                               ? Option.Task
                               : task.type === 'Info'
                                 ? Option.Info
@@ -139,13 +131,12 @@ const TaskLadder: React.FC = () => {
                     gameId: task.game.id,
                     name: 'unknownRR',
                 };
-                console.log(newTask);
                 ttasks.push(newTask);
             });
             setTasks(ttasks);
         }
     }, [section, loading]);
-    const getIcon = (option: Option, task: Task) => {
+    const getIcon = (option: Option, task: LocalTask) => {
         if (!loading && section != undefined && option === Option.Task) {
             return (
                 <MdOutlineTaskAlt
