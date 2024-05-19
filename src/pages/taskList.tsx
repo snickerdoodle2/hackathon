@@ -243,14 +243,7 @@ const TaskLadder: React.FC = () => {
                     >
                         <div className='task-ladder-title-container'>
                             <Card
-                                className='task-ladder-card'
-                                style={{
-                                    background:
-                                        'linear-gradient(to right, #F48535, #F4A435)',
-                                    height: '10svh',
-                                    padding: '0',
-                                    margin: '0',
-                                }}
+                                className='task-ladder-card m-0 animated-background text-white bg-gradient-to-br from-orange-300 to-orange-600 to-90% shadow-[#1f1f1f] shadow-xl border-none p-3'
                             >
                                 <CardHeader
                                     style={{
