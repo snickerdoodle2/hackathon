@@ -1,25 +1,38 @@
 {
     "id": 3,
     "name": "AGH Space Systems",
-    "localizationTips": "Weź dwa i potem odejmij cztery ",
+    "localizationTips": "Szukaj rakiety i łazika!",
     "localization": "sala 2.41",
     "tasks": [
         {
             "id": 1,
-            "title": "Bit Wordle",
-            "overview": "Wordle związane z KN BIT",
-            "description": "Odgadnij słowa związane z kołem naukowym BIT",
-            "game": {
-                "id": 1,
-                "type": "Wordle",
-                "configuration": {}
-            },
-            "type": "Game"
+            "type": "Info",
+            "title": "Space Data",
+            "overview": "Kosmiczne informacje",
+            "description": "Kosmiczne informacje",
+            "configuration": {
+                "infos": {
+                    "Czym jest Space systemes": "AGH Space Systems to studenckie koło naukowe działające przy Akademii Górniczo-Hutniczej w Krakowie, specjalizujące się w projektach związanych z inżynierią kosmiczną. Zespół ten zajmuje się m.in. budową rakiet, satelitów oraz udziałem w międzynarodowych konkursach i projektach związanych z eksploracją kosmosu.",
+                    "Jaka jest rola programisty": "Rola programisty w AGH Space Systems polega na tworzeniu oprogramowania dla różnych projektów kosmicznych, takich jak systemy sterowania rakiet czy oprogramowanie do analizy danych z satelitów. Programiści współpracują z inżynierami i innymi członkami zespołu, aby integrować sprzęt z oprogramowaniem, zapewniając sprawne działanie całego systemu. Dodatkowo, zajmują się testowaniem i debugowaniem kodu, aby upewnić się, że jest niezawodny i spełnia wymagania projektowe."
+                },
+                "youtube": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                "links": {
+                    "Więcej o KN BIT": "https://knbit.edu.pl",
+                    "Linkedin": "www.linkedin.com/company/bit-scientific-group-at-agh-university"
+                }
+            }
         },
         {
             "id": 2,
-            "type": "Info",
-            "configuration": {}
+            "type": "Game",
+            "title": "Quiz",
+            "overview": "Quiz zwiazany z infromatyką",
+            "description": "Odgadnij słowa związane z kołem naukowym BIT",
+            "game": {
+                "id": 2,
+                "type": "Nonogram",
+                "configuration": {}
+            }
         }
     ]
 }

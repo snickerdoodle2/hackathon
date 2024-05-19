@@ -23,11 +23,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Section, { Task } from '@/lib/section';
 import { StorageContext } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background.tsx';
+import Availability from '@/lib/availability';
+import { toast } from '@/components/ui/use-toast';
 
 enum Option {
-    Task = 'task',
-    Info = 'info',
-    Game = 'game',
+    Task = 'Task',
+    Info = 'Info',
+    Game = 'Game',
 }
 interface LocalTask {
     id: number;
@@ -133,6 +135,7 @@ const TaskLadder: React.FC = () => {
                               : task.type === 'Info'
                                 ? Option.Info
                                 : (() => {
+                                      console.log(`Unknown task found`);
                                       throw new Error(`Unknown task `);
                                   })(),
                     name: 'unknownRR',
@@ -206,11 +209,13 @@ const TaskLadder: React.FC = () => {
         if (!loading && section != undefined) {
             return () => {
                 if (tasks.every((task) => task.completed)) {
-                    setStarred(!starred);
+                    setStarred(true);
+                } else {
+                    setStarred(false);
                 }
             };
         }
-    }, [clickedButton, starred]); //eslint-disable-line react-hooks/exhaustive-deps
+    }, [clickedButton, starred, tasks]); //eslint-disable-line react-hooks/exhaustive-deps
 
     const handleContainerClick = () => {
         if (clickedButton !== null) {
@@ -218,10 +223,37 @@ const TaskLadder: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        if (sectionId != undefined && !loading) {
+            const status = Availability.isSectionAvailable(parseInt(sectionId));
+            if (status) {
+                console.log('Authorized section: ', sectionId);
+
+                toast({
+                    variant: 'default',
+                    title: 'Rozpoczynamy eksploracje',
+                    description: 'Dobrej zabawy!',
+                    duration: 2000,
+                });
+
+                navigate(`/sections/${sectionId}/tasks`);
+            } else {
+                console.log('Not authorized section: ', sectionId);
+                toast({
+                    variant: 'destructive',
+                    title: 'Nieautoryzowany dostęp',
+                    description: 'Niepoprawne hasło dostępu do sekcji.',
+                    duration: 2000,
+                });
+
+                navigate('/');
+            }
+        }
+    }, [section, loading, navigate, sectionId]);
+
     if (loading) {
         return Loading();
     }
-
     if (error) {
         return <div>Error loading configuration: {error.message}</div>;
     }
@@ -236,21 +268,12 @@ const TaskLadder: React.FC = () => {
             section != undefined &&
             tasks[0] != undefined && (
                 <Background animationClass='animate-pulse'>
-                    <div
-                        className='task-ladder-container'
+                    <Card
+                        className='bg-background/90 h-full w-full overflow-hidden py-4 _container'
                         onClick={() => handleContainerClick()}
                     >
                         <div className='task-ladder-title-container'>
-                            <Card
-                                className='task-ladder-card'
-                                style={{
-                                    background:
-                                        'linear-gradient(to right, #F48535, #F4A435)',
-                                    height: '10svh',
-                                    padding: '0',
-                                    margin: '0',
-                                }}
-                            >
+                            <Card className='task-ladder-card m-0 animated-background text-white bg-gradient-to-br from-orange-300 to-orange-600 to-90% shadow-[#1f1f1f] shadow-xl border-none p-3'>
                                 <CardHeader
                                     style={{
                                         padding: '4% 2% 0% 4%',
@@ -301,7 +324,7 @@ const TaskLadder: React.FC = () => {
                                         }
                                         borderWidth={3}
                                         delay={true}
-                                        zIndex={-1}
+                                        zIndex={0}
                                         className='task-ladder-line'
                                     />
                                     <div
@@ -355,7 +378,7 @@ const TaskLadder: React.FC = () => {
                                             }
                                             borderWidth={3}
                                             delay={true}
-                                            zIndex={-1}
+                                            zIndex={0}
                                             className='task-ladder-line'
                                         />
                                     )}
@@ -378,9 +401,9 @@ const TaskLadder: React.FC = () => {
                                                             clickedButton ===
                                                                 task.id &&
                                                             !task.completed
-                                                                ? '#abecc7'
+                                                                ? '#90e16f'
                                                                 : task.completed
-                                                                  ? '#90e16f'
+                                                                  ? '#4ab52f'
                                                                   : '',
                                                         width: '40px',
                                                         height: '40px',
@@ -427,12 +450,12 @@ const TaskLadder: React.FC = () => {
                                 borderColor={'#191919'}
                                 borderWidth={3}
                                 delay={true}
-                                zIndex={-1}
-                                to='task-ladder-container'
+                                zIndex={0}
+                                to='_container'
                                 toAnchor='bottom center'
                             />
                         </div>
-                    </div>
+                    </Card>
                 </Background>
             )
         );
