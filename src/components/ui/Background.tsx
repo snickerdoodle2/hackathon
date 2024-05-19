@@ -9,10 +9,10 @@ const Background = ({ children, animationClass }: BackgroundProps) => {
     return (
         <div
             className='animated-background2
-    bg-gradient-to-br from-sky-500 from-10% via-blue-700 via-30% to-purple-500 to-90% h-screen flex flex-col overflow-clip'
+    bg-gradient-to-br from-sky-500 from-10% via-blue-700 via-30% to-purple-500 to-90% h-svh flex flex-col overflow-clip'
         >
             <div
-                className={`h-screen w-screen absolute bg-[url('/assets/Starts.png')] ${animationClass}`}
+                className={`h-svh w-svw absolute bg-[url('/assets/Starts.png')] ${animationClass}`}
             >
                 <img
                     src='/assets/satellite.png'
@@ -20,7 +20,7 @@ const Background = ({ children, animationClass }: BackgroundProps) => {
                 />
             </div>
 
-            <div className='relative z-10 h-screen flex flex-col flex-1 py-12 px-6 font-poppins'>
+            <div className='relative z-10 h-sv flex flex-col flex-1 py-12 px-6 font-poppins'>
                 {children}
             </div>
         </div>

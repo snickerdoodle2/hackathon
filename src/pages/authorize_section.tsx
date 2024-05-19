@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Section from '@/lib/section.ts';
 import { useToast } from '@/components/ui/use-toast';
+import Availability from '@/lib/availability';
 
 function Loading() {
     return (
@@ -76,7 +77,7 @@ export const AuthorizeSection = () => {
                         description: 'Dobrej zabawy!',
                         duration: 2000,
                     });
-
+                    Availability.setSectionAvailable(parseInt(sectionId!));
                     navigate(`/sections/${sectionId}/tasks`);
                 } else {
                     console.log('Not authorized section: ', sectionId);

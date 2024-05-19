@@ -16,11 +16,20 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import Availability from '@/lib/availability';
 
 const Home = () => {
     const [animationClass, setAnimationClass] = useState('animate-pulse');
     const [sectionId, setSectionId] = useState(0);
     const [imageSrc, setImageSrc] = useState('assets/rocket.png');
+    
+    const isAvailable = (id: number) => {
+        
+        if(id === 0){
+            return true
+        }
+        return Availability.isSectionAvailable(id);
+    }
 
     const handleClickLeft = () => {
         setAnimationClass('animate-spin2');
@@ -51,8 +60,9 @@ const Home = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className='drop-shadow-[0_0px_5px_rgba(0,0,0,1)]'>
-                    <p>Quiz - KN Bit</p>
-                    <p>Wordle - Space Systems</p>
+                    {isAvailable(1) && <p>Quiz - KN Bit</p>}
+                    {isAvailable(2) && <p>Wordle - Informatyka</p>}
+                    {isAvailable(3) && <p>Nonogram - Space Systems</p>}
                 </CardContent>
             </Card>
 
@@ -85,12 +95,10 @@ const Home = () => {
 
             <AlertDialog>
                 <AlertDialogTrigger>
-                    <img
-                        src={imageSrc}
-                        className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
-                        onMouseOver={() => setImageSrc('assets/rocket2.png')}
-                        onMouseOut={() => setImageSrc('assets/rocket.png')}
-                    />
+                <img
+                    src={isAvailable(sectionId) ? 'assets/rocket.png' : 'assets/rocket2.png'}
+                    className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
+                />
                 </AlertDialogTrigger>
                 <AlertDialogContent className='absolute overflow-clip'>
                     <AlertDialogHeader>
