@@ -61,11 +61,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/prizes',
-        element: <Prizes />
+        element: <Prizes />,
     },
     {
         path: '/scoreboard',
-        element: <Scoreboard />
+        element: <Scoreboard />,
     },
     {
         path: '*',
