@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
 import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import GameHelper from './GameHelper';
 import { Button } from '../ui/button';
-import WinPopup from '../nonogram/WinPopup';
 import { type GameTask } from '@/lib/section';
+import { useToast } from '../ui/use-toast';
 
 interface Props {
     navigate: NavigateFunction;
@@ -13,28 +12,18 @@ interface Props {
 }
 
 export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
-    const [shouldShow, setShouldShow] = useState<boolean>(false);
-    const countdownLength = 3;
-    const [count, setCount] = useState<number>(1);
-    const [points, setPoints] = useState<number>(0);
-
     const navi = useNavigate();
+    const { toast } = useToast();
 
     function onFinish(gained: number) {
-        setShouldShow(true);
-        setPoints((points) => points + gained);
-        countdown(countdownLength);
-    }
-
-    useEffect(() => console.log(points), [points]);
-
-    function countdown(num: number) {
-        console.log(num);
-        setCount(num);
-        if (num == 0) {
-            setTimeout(() => navi('/'), 1000);
-        }
-        setTimeout(() => countdown(num - 1), 1000);
+        console.log(gained);
+        toast({
+            title: "Gratulacje!",
+            description: `Zdobyłeś ${gained} punktów! Zaraz wrócisz na poprzednią stronę...`
+        });
+        setTimeout(() => {
+            navi(-1);
+        }, 2000);
     }
 
     return (
@@ -71,15 +60,6 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
                     Stop Task
                 </Button>
             </div>
-            <WinPopup
-                top={200}
-                left={300}
-                opacity={shouldShow ? 1 : 0}
-                isPlaying={shouldShow}
-                countdownLength={countdownLength}
-                circleColor={'ffc20e'}
-                count={count}
-            />
         </div>
     );
 }
