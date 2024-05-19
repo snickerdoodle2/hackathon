@@ -34,7 +34,6 @@ interface LocalTask {
     completed: boolean;
     shortText: string;
     option: Option;
-    gameId: number;
 }
 
 function Loading() {
@@ -121,14 +120,13 @@ const TaskLadder: React.FC = () => {
                     option:
                         task.type === 'Game'
                             ? Option.Game
-                            : task.type === 'LocalTask'
-                              ? Option.Task
-                              : task.type === 'Info'
-                                ? Option.Info
-                                : (() => {
-                                      throw new Error('Unknown task');
-                                  })(),
-                    gameId: task.game.id,
+                            : task.type === 'Task'
+                                ? Option.Task
+                                : task.type === 'Info'
+                                    ? Option.Info
+                                    : (() => {
+                                        throw new Error(`Unknown task ${task.type}`);
+                                    })(),
                     name: 'unknownRR',
                 };
                 ttasks.push(newTask);
@@ -368,11 +366,11 @@ const TaskLadder: React.FC = () => {
                                                     backgroundColor:
                                                         clickedButton ===
                                                             task.id &&
-                                                        !task.completed
+                                                            !task.completed
                                                             ? '#abecc7'
                                                             : task.completed
-                                                              ? '#90e16f'
-                                                              : '',
+                                                                ? '#90e16f'
+                                                                : '',
                                                     width: '40px',
                                                     height: '40px',
                                                     padding: '0',
