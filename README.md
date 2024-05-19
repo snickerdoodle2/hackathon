@@ -76,3 +76,32 @@ To jest gra bo 1:
 -   Ekran Wstepny
 -   Ekran Powieksoznych informacji
 -   Ekrany Minigierek
+
+## Proces Instalacyjny
+
+### Wymagania wstępne
+
+Upewnij się, że masz zainstalowane:
+
+-   [Node.js](https://nodejs.org/)
+-   [npm](https://www.npmjs.com/)
+
+### Instalacja
+
+Pobierz projekt
+
+    git clone https://github.com/snickerdoodle2/hackathon.git
+
+Usuń folder node_modules i plik package-lock.json
+
+    rm -rf node_modules package-lock.json
+
+wpisz komende :
+
+    npm i
+
+### Uruchomienie
+
+Wpisz komende :
+
+    npm run dev
