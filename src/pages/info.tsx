@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import {
+    StorageContext,
+    StorageContextType,
+} from '@/components/Storage/storageContext';
+import Background from '@/components/ui/Background';
 
 const Info: React.FC = () => {
     const navigate = useNavigate();
@@ -17,7 +22,7 @@ const Info: React.FC = () => {
         links: {
             'Więcej o KN BIT': 'https://knbit.edu.pl',
             Linkedin:
-                'www.linkedin.com/company/bit-scientific-group-at-agh-university',
+                'https://www.linkedin.com/company/bit-scientific-group-at-agh-university/?originalSubdomain=pl',
         },
     };
 
@@ -80,42 +85,70 @@ const Info: React.FC = () => {
         return null;
     };
 
+    const context = useContext(StorageContext);
+
+    if (context === undefined) {
+        throw new Error('useStorage must be used within a StorageProvider');
+    }
+
+    const { points, setPoints }: StorageContextType = context;
+
     const handleBackClick = () => {
-        navigate('/');
+        navigate(-1);
     };
 
     const handleReadClick = () => {
-        navigate('/');
+        setPoints(points + 100);
+        navigate(-1);
     };
 
     return (
-        <div className='info-window px-8 py-8 max-w-screen-lg mx-auto'>
-            <button
-                className='back-button absolute top-4 left-8 bg-none border-none text-xl font-bold'
-                onClick={handleBackClick}
+        <Background animationClass={'animate-pulse'}>
+            <div
+                style={{
+                    backgroundColor: 'rgba(255,255,255,0.5)',
+                    width: '90%',
+                    height: '100%',
+                    borderRadius: 20,
+                    alignSelf: 'center',
+                    fontWeight: 500,
+                    padding: 20,
+                    fontSize: 18,
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    alignContent: 'space-around',
+                }}
+                className='overflow-y-scroll'
             >
-                ←
-            </button>
-            <div className='content mt-12'>
-                <h1 className='text-2xl font-bold mb-8'>Informacje</h1>
+                <div className='info-window px-8 py-8 max-w-screen-lg mx-auto overflow-y-scroll'>
+                    <button
+                        className='back-button absolute top-4 left-8 bg-none border-none text-xl font-bold'
+                        onClick={handleBackClick}
+                    >
+                        ←
+                    </button>
+                    <div className='content mt-12'>
+                        <h1 className='text-2xl font-bold mb-8'>Informacje</h1>
 
-                {/* Renderowanie sekcji */}
-                {renderSections()}
+                        {/* Renderowanie sekcji */}
+                        {renderSections()}
 
-                {/* Renderowanie filmu z YouTube, jeśli istnieje */}
-                {renderYouTube()}
+                        {/* Renderowanie filmu z YouTube, jeśli istnieje */}
+                        {renderYouTube()}
 
-                {/* Renderowanie sekcji linków */}
-                {renderLinks()}
+                        {/* Renderowanie sekcji linków */}
+                        {renderLinks()}
 
-                <Button
-                    className='read-button block mx-auto mt-8 px-4 py-2 bg-blue-500 text-white font-bold rounded cursor-pointer'
-                    onClick={handleReadClick}
-                >
-                    Przeczytałem
-                </Button>
+                        <Button
+                            className='read-button block mx-auto mt-8 px-4 py-2 bg-blue-500 text-white font-bold rounded cursor-pointer'
+                            onClick={handleReadClick}
+                        >
+                            Przeczytałem
+                        </Button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </Background>
     );
 };
 

@@ -10,13 +10,13 @@ import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
 import Prizes from '@/pages/prizes';
-import MiniQuiz from './pages/miniquiz';
 import Scoreboard from './pages/scoreboard';
 import Welcome from './pages/Welcome';
 
 import Nono from './components/minigames/Nono';
 
 import AuthorizeSection from '@/pages/authorize_section.tsx';
+import { Toaster } from './components/ui/toaster';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -45,16 +45,12 @@ const router = createBrowserRouter([
         element: <AuthorizeSection />,
     },
     {
-        path: '/info',
+        path: 'sections/1/tasks/2/game',
         element: <Info />,
     },
     {
         path: '/task',
         element: <Task />,
-    },
-    {
-        path: '/mini-quiz',
-        element: <MiniQuiz />,
     },
     {
         path: '/prizes',
@@ -81,6 +77,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <StorageProvider>
             <RouterProvider router={router} />
+            <Toaster />
         </StorageProvider>
     </React.StrictMode>
 );

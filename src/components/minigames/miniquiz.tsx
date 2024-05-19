@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 
 // Przykładowe dane JSON z pytaniami i odpowiedziami
@@ -114,7 +113,9 @@ const quizData = [
     },
 ];
 
-const MiniQuiz: React.FC = () => {
+const MiniQuiz: React.FC<{ onFinish: (_: number) => void }> = ({
+    onFinish,
+}) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<
         number | null
@@ -122,7 +123,6 @@ const MiniQuiz: React.FC = () => {
     const [explanation, setExplanation] = useState<string | null>(null);
     const [progress, setProgress] = useState(0);
     const [intervalProgress, setIntervalProgress] = useState(0);
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (selectedAnswerIndex !== null) {
@@ -138,7 +138,7 @@ const MiniQuiz: React.FC = () => {
                 if (currentQuestionIndex < quizData.length - 1) {
                     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
                 } else {
-                    navigate('/');
+                    onFinish(500);
                 }
                 setSelectedAnswerIndex(null);
                 setExplanation(null);
@@ -150,7 +150,7 @@ const MiniQuiz: React.FC = () => {
                 clearTimeout(timer);
             };
         }
-    }, [selectedAnswerIndex, currentQuestionIndex, navigate]);
+    }, [selectedAnswerIndex, currentQuestionIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         setProgress(((currentQuestionIndex + 1) / quizData.length) * 100);
@@ -168,7 +168,7 @@ const MiniQuiz: React.FC = () => {
     const currentQuestion = quizData[currentQuestionIndex];
 
     return (
-        <div className='p-8 max-w-md mx-auto flex flex-col min-h-screen'>
+        <div className='p-8 max-w-md mx-auto flex flex-col h-full'>
             <div className='w-full bg-gray-200 rounded h-2 mb-8'>
                 <div
                     className='bg-blue-600 h-2 rounded transition-all duration-500'
