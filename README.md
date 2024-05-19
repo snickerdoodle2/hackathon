@@ -83,25 +83,22 @@ To jest gra bo 1:
 
 Upewnij się, że masz zainstalowane:
 
--   [Node.js](https://nodejs.org/)
--   [npm](https://www.npmjs.com/)
+-   [Node.js LTS v20](https://nodejs.org/)
 
 ### Instalacja
 
-Pobierz projekt
+1. Pobierz projekt:
+```bash
+git clone https://github.com/snickerdoodle2/hackathon.git
+```
 
-    git clone https://github.com/snickerdoodle2/hackathon.git
-
-Usuń folder node_modules i plik package-lock.json
-
-    rm -rf node_modules package-lock.json
-
-wpisz komende :
-
-    npm i
+1. Zainstaluj biblioteki:
+```bash
+npm install
+```   
 
 ### Uruchomienie
 
-Wpisz komende :
-
-    npm run dev
+```bash
+npm run dev
+```
