@@ -77,13 +77,16 @@ const TaskLadder: React.FC = () => {
     const { sectionId } = useParams();
     const [section, setSection] = useState<Section | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | undefined>(undefined);
-    const [taskListDescription, setTaskListDescription] = useState(null);
-    const [sectionName, setSectionName] = useState(null);
-    const [tasks, setTasks] = useState<Task[]>([]);
-    const [score, setScore] = useState<number | null>(
-        parseInt(localStorage.getItem('score')) || 0
+    const [error, setError] = useState<Error>();
+    const [taskListDescription, setTaskListDescription] = useState<
+        string | undefined
+    >(undefined);
+    const [sectionName, setSectionName] = useState<string | undefined>(
+        undefined
     );
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const storedScore = localStorage.getItem('score');
+    const score = storedScore ? parseInt(storedScore) : 0;
     const navigate = useNavigate();
     useEffect(() => {
         const fetchConfig = async () => {
@@ -95,51 +98,50 @@ const TaskLadder: React.FC = () => {
                     setSection(sectionInstance);
                 }
             } catch (err) {
-                setError((err as Error).message);
+                setError(error as Error);
             } finally {
                 setLoading(false);
             }
         };
         fetchConfig();
     }, [sectionId]);
-
+    interface JsonTask {
+        id: number;
+        overview: string;
+        title: string;
+        type: string;
+        game: {
+            id: number;
+        };
+    }
     // this use effect sets all data reqired for task ladder
     useEffect(() => {
         if (!loading && section != undefined) {
             const ttasks: Task[] = [];
             setTaskListDescription(section.getConfigData().localization);
             setSectionName(section.getConfigData().name);
-            section
-                .getConfigData()
-                .tasks.forEach(
-                    (task: {
-                        id: any;
-                        overview: any;
-                        title: any;
-                        type: string;
-                        game: { id: any };
-                    }) => {
-                        const newTask: Task = {
-                            id: task.id,
-                            message: task.overview,
-                            completed: false,
-                            shortText: task.title,
-                            option:
-                                task.type === 'Game'
-                                    ? Option.Game
-                                    : task.type === 'Task'
-                                      ? Option.Task
-                                      : task.type === 'Info'
-                                        ? Option.Info
-                                        : (() => {
-                                              throw new Error('Unknown task');
-                                          })(),
-                            gameId: task.game.id,
-                            name: 'unknownRR',
-                        };
-                        ttasks.push(newTask);
-                    }
-                );
+            section.getConfigData().tasks.forEach((task: JsonTask) => {
+                const newTask: Task = {
+                    id: task.id,
+                    message: task.overview,
+                    completed: false,
+                    shortText: task.title,
+                    option:
+                        task.type === 'Game'
+                            ? Option.Game
+                            : task.type === 'Task'
+                              ? Option.Task
+                              : task.type === 'Info'
+                                ? Option.Info
+                                : (() => {
+                                      throw new Error('Unknown task');
+                                  })(),
+                    gameId: task.game.id,
+                    name: 'unknownRR',
+                };
+                console.log(newTask);
+                ttasks.push(newTask);
+            });
             setTasks(ttasks);
         }
     }, [section, loading]);
@@ -172,7 +174,7 @@ const TaskLadder: React.FC = () => {
                     }}
                 />
             );
-        } else if (!loading && option === Option.Game) {
+        } else if (!loading && task != undefined && option === Option.Game) {
             return (
                 <MdOutlineGamepad
                     size={20}
