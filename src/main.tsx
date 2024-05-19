@@ -16,6 +16,7 @@ import Welcome from './pages/Welcome';
 import Nono from './components/minigames/Nono';
 
 import AuthorizeSection from '@/pages/authorize_section.tsx';
+import { Toaster } from './components/ui/toaster';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
@@ -76,6 +77,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <StorageProvider>
             <RouterProvider router={router} />
+            <Toaster />
         </StorageProvider>
     </React.StrictMode>
 );
