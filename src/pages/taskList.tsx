@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/card';
 import { useNavigate, useParams } from 'react-router-dom';
 import Section, { Task } from '@/lib/section';
+import { useStorage } from '@/components/Storage/storageContext';
 
 enum Option {
     Task = 'task',
@@ -70,6 +71,7 @@ function Loading() {
 }
 
 const TaskLadder: React.FC = () => {
+    const { points } = useStorage();
     const [clickedButton, setClickedButton] = useState<number | null>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [starred, setStarred] = useState(false);
@@ -84,8 +86,6 @@ const TaskLadder: React.FC = () => {
         undefined
     );
     const [tasks, setTasks] = useState<LocalTask[]>([]);
-    const storedScore = localStorage.getItem('score');
-    const score = storedScore ? parseInt(storedScore) : 0;
     const navigate = useNavigate();
     useEffect(() => {
         const fetchConfig = async () => {
@@ -265,7 +265,7 @@ const TaskLadder: React.FC = () => {
                     </div>
                     <div className='task-ladder'>
                         <div className='task-ladder-score'>
-                            <p>{score}</p>{' '}
+                            <p>{points}</p>{' '}
                             <AiOutlineTrophy
                                 size={30}
                                 style={{ color: '#f6c342' }}
