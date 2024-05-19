@@ -3,6 +3,7 @@
     "name": "AGH Space Systems",
     "localizationTips": "Szukaj rakiety i łazika!",
     "localization": "sala 2.41",
+    "password": "1234",
     "tasks": [
         {
             "id": 1,
