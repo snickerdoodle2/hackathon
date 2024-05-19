@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { ArrowDown, ArrowUp } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 type Paradigm = 'Objective' | 'Imperative' | 'Functional';
 type Language = {
@@ -152,7 +152,9 @@ const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
     );
 };
 
-export const Wordle: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
+export const Wordle: React.FC<{ onFinish: (_arg: number) => void }> = ({
+    onFinish,
+}) => {
     const [input, setInput] = useState('');
 
     const correct = langs[0];
@@ -170,18 +172,21 @@ export const Wordle: React.FC<{ onFinish: () => void }> = ({ onFinish }) => {
 
     useEffect(() => {
         if (correctChoice) {
-            onFinish();
-        }
-    }, [correctChoice, onFinish]);
+            const pointsForFinishing =
+                Math.max(langs.length - choices.length, 0) * 100;
 
-    if (correctChoice) {
-        return (
-            <div>
-                <p>yay!</p>
-                <p>Redirecting in 5 seconds!!</p>
-            </div>
-        );
-    }
+            onFinish(pointsForFinishing);
+        }
+    }, [correctChoice]);
+
+    // if (correctChoice) {
+    //     return (
+    //         <div>
+    //             <p>yay!</p>
+    //             <p>Redirecting in 5 seconds!!</p>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className='flex flex-col justify-between flex-1 px-4 py-2 '>

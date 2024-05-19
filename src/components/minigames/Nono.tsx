@@ -6,7 +6,7 @@ import Cell from '../nonogram/Cell';
 // import WinPopup from '../nonogram/WinPopup';
 
 interface Props {
-    onFinish: () => void;
+    onFinish: (_num: number) => void;
 }
 
 export default function Nono({ onFinish }: Props) {
@@ -132,6 +132,13 @@ export default function Nono({ onFinish }: Props) {
         return columnClues;
     }
 
+
+    const whenCountdown = 0;
+    const countdownLength = 3;
+    const backTransTarget = 1.5;
+    const [backgroundTransition, setBackgroundTransition] = useState<number>(0);
+    const pointsForFinishing = 500
+
     // function countdown(num: number) {
     //     setCount(num);
     //     if (num == 0) {
@@ -140,18 +147,13 @@ export default function Nono({ onFinish }: Props) {
     //     setTimeout(() => countdown(num - 1), 1000);
     // }
 
-    const whenCountdown = 0;
-    // const countdownLength = 3;
-    const backTransTarget = 1.5;
-    const [backgroundTransition, setBackgroundTransition] = useState<number>(0);
-
     useEffect(() => {
         if (wrong == whenCountdown) {
             // countdown(countdownLength);
             setBackgroundTransition(backTransTarget);
-            onFinish();
+            onFinish(500);
         }
-    }, [wrong, onFinish]);
+    }, [wrong]);
 
     return (
         <div
@@ -160,14 +162,14 @@ export default function Nono({ onFinish }: Props) {
                 flexDirection: 'column',
                 borderWidth: 1,
                 flex: 1,
-                width: 400,
+                width: nono_width + left_num_width,
+                maxHeight: nono_height + top_num_height,
             }}
         >
             <div
                 style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    borderWidth: 1,
                     height: top_num_height,
                 }}
             >
@@ -176,7 +178,6 @@ export default function Nono({ onFinish }: Props) {
                     style={{
                         display: 'flex',
                         flexDirection: 'row',
-                        borderWidth: 1,
                         width: nono_width,
                     }}
                 >
@@ -187,6 +188,7 @@ export default function Nono({ onFinish }: Props) {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'space-evenly',
+                                borderLeftWidth: 1,
                             }}
                         >
                             {row.map((num) => (
@@ -207,7 +209,6 @@ export default function Nono({ onFinish }: Props) {
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        borderWidth: 1,
                         width: left_num_width,
                     }}
                 >
@@ -218,6 +219,7 @@ export default function Nono({ onFinish }: Props) {
                                 display: 'flex',
                                 flexDirection: 'row',
                                 justifyContent: 'space-evenly',
+                                borderTopWidth: 1,
                             }}
                         >
                             {row.map((num) => (
@@ -226,7 +228,7 @@ export default function Nono({ onFinish }: Props) {
                         </div>
                     ))}
                 </div>
-                <div style={{ width: nono_width, borderWidth: 1 }}>
+                <div style={{ width: nono_width, borderTopWidth: 0.5, borderLeftWidth: 0.5}}>
                     {nonogram.map((row, i) => (
                         <div
                             style={{
@@ -262,16 +264,6 @@ export default function Nono({ onFinish }: Props) {
                     ))}
                 </div>
             </div>
-
-            {/* <WinPopup
-                top={top_num_height + (nono_height - 140) / 2}
-                left={left_num_width + (nono_width - 200) / 2}
-                opacity={wrong == whenCountdown ? 1 : 0}
-                isPlaying={wrong == whenCountdown}
-                countdownLength={countdownLength}
-                circleColor={c[3]}
-                count={count}
-            /> */}
         </div>
     );
 }
