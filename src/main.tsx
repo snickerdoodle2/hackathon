@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from '@/pages/home.tsx';
 import TaskLadder from './pages/taskList';
 
 import Nono from './components/minigames/Nono';
@@ -16,7 +17,7 @@ import MiniQuiz from './pages/miniquiz';
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <p>Home</p>,
+        element: <Home />,
     },
     {
         path: 'scoreboard',
