@@ -1,17 +1,41 @@
+type Task = {
+    id: number,
+    title: string,
+    overview: string,
+    description: string,
+    game: {
+        id: number,
+        type: "Wordle" | "Nonogram"
+    }
+} | {
+    id: number,
+    type: string,
+    configuration: any
+}
+
+type Configuration = {
+    id: number,
+    name: string,
+    localizationTips: string,
+    localization: string,
+    tasks: Task[]
+}
+
 class Section {
-    private configData: never;
+    private configData: Configuration;
+    // @ts-ignore
     private configurationid: number;
 
-    private constructor(id: number, configData: never) {
-        this.configurationid = id;
+    private constructor(id: number, configData: Configuration) {
+        // @ts-ignore
+        this._configurationid = id;
         this.configData = configData;
     }
 
     static async createInstance(id: number) {
+        // FIXME: can fail
         const configuration = await fetch(`/${id}.json`);
-        const configData = await configuration.json();
-
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const configData = await configuration.json() as Configuration;
 
         return new Section(id, configData);
     }
@@ -26,7 +50,7 @@ class Section {
         if (this.configData.tasks.length === 0)
             throw new Error('No tasks in section');
 
-        if (!this.configData.tasks.some((task: { id }) => task.id === taskId))
+        if (!this.configData.tasks.some((task) => task.id === taskId))
             throw new Error('Task not found');
 
         return this.configData.tasks.find(
