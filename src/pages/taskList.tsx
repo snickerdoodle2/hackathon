@@ -86,19 +86,18 @@ const TaskLadder: React.FC = () => {
     );
     const navigate = useNavigate();
     useEffect(() => {
-
         const fetchConfig = async () => {
             try {
                 if (sectionId != undefined) {
-                    const sectionInstance = await Section.createInstance(parseInt(sectionId));
+                    const sectionInstance = await Section.createInstance(
+                        parseInt(sectionId)
+                    );
                     setSection(sectionInstance);
-
                 }
             } catch (err) {
                 setError((err as Error).message);
             } finally {
                 setLoading(false);
-
             }
         };
         fetchConfig();
@@ -110,22 +109,40 @@ const TaskLadder: React.FC = () => {
             const ttasks: Task[] = [];
             setTaskListDescription(section.getConfigData().localization);
             setSectionName(section.getConfigData().name);
-            section.getConfigData().tasks.forEach((task: { id: any; overview: any; title: any; type: string; game: { id: any; }; }) => {
-                const newTask: Task = {
-                    id: task.id,
-                    message: task.overview,
-                    completed: false,
-                    shortText: task.title,
-                    option: task.type === 'Game' ? Option.Game : task.type === 'Task' ? Option.Task : task.type === 'Info' ? Option.Info : (() => { throw new Error('Unknown task'); })(),
-                    gameId: task.game.id,
-                    name: "unknownRR"
-                };
-                ttasks.push(newTask);
-            });
-            setTasks(ttasks)
+            section
+                .getConfigData()
+                .tasks.forEach(
+                    (task: {
+                        id: any;
+                        overview: any;
+                        title: any;
+                        type: string;
+                        game: { id: any };
+                    }) => {
+                        const newTask: Task = {
+                            id: task.id,
+                            message: task.overview,
+                            completed: false,
+                            shortText: task.title,
+                            option:
+                                task.type === 'Game'
+                                    ? Option.Game
+                                    : task.type === 'Task'
+                                      ? Option.Task
+                                      : task.type === 'Info'
+                                        ? Option.Info
+                                        : (() => {
+                                              throw new Error('Unknown task');
+                                          })(),
+                            gameId: task.game.id,
+                            name: 'unknownRR',
+                        };
+                        ttasks.push(newTask);
+                    }
+                );
+            setTasks(ttasks);
         }
-
-    }, [section, loading])
+    }, [section, loading]);
     const getIcon = (option: Option, task: Task) => {
         if (!loading && section != undefined && option === Option.Task) {
             return (
@@ -194,7 +211,6 @@ const TaskLadder: React.FC = () => {
                 }
             };
         }
-
     }, [clickedButton, starred]); //add tasks as dep
 
     const handleContainerClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -216,105 +232,69 @@ const TaskLadder: React.FC = () => {
     }
 
     if (!loading) {
-
-        return ((!loading && section != undefined && tasks[0] != undefined) &&
-            <div className='task-ladder-container' onClick={() => handleContainerClick()}>
-                <div className='task-ladder-title-container'>
-                    <Card
-                        className='task-ladder-card'
-                        style={{
-                            background:
-                                'linear-gradient(to right, #F48535, #F4A435)',
-                            height: '10svh',
-                            padding: '0',
-                            margin: '0',
-                        }}
-                    >
-                        <CardHeader
+        return (
+            !loading &&
+            section != undefined &&
+            tasks[0] != undefined && (
+                <div
+                    className='task-ladder-container'
+                    onClick={() => handleContainerClick()}
+                >
+                    <div className='task-ladder-title-container'>
+                        <Card
+                            className='task-ladder-card'
                             style={{
-                                padding: '4% 2% 0% 4%',
+                                background:
+                                    'linear-gradient(to right, #F48535, #F4A435)',
+                                height: '10svh',
+                                padding: '0',
                                 margin: '0',
-                                position: 'relative',
                             }}
                         >
-                            <CardTitle>{sectionName}</CardTitle>
-                            <CardDescription style={{ color: 'white' }}>{taskListDescription}</CardDescription>
-                            <div className='task-ladder-back'>
-                                <RiHome6Line
-                                    style={{ color: 'white' }}
-                                    size={30}
-                                    onClick={() => handleHomeClick()}
-                                />
-                            </div>
-                        </CardHeader>
-                    </Card>
-                </div>
-                <div className='task-ladder'>
-                    <div className='task-ladder-score'>
-                        <p>{score}</p>{' '}
-                        <AiOutlineTrophy size={30} style={{ color: '#f6c342' }} />
-                    </div>
-
-                    <div
-                        className='task-ladder-finish'
-                        style={{ backgroundColor: starred ? '#f6c342' : '#6c6c6c' }}
-                    >
-                        <div className={`task-${'inf'}`}>
-                            <SteppedLineTo
-                                from={`task-${'inf'}`}
-                                to={`task-${0}`}
-                                borderColor={
-                                    tasks != undefined && tasks[0].completed ? '#191919' : '#d1d5db'
-                                }
-                                borderWidth={3}
-                                delay={true}
-                                zIndex={-1}
-                                className='task-ladder-line'
-                            />
-                            <div
+                            <CardHeader
                                 style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
+                                    padding: '4% 2% 0% 4%',
+                                    margin: '0',
+                                    position: 'relative',
                                 }}
                             >
-                                <Button
-                                    className={`task-${'inf'}`}
-                                    variant='outline'
-                                    style={{
-                                        width: '40px',
-                                        height: '40px',
-                                        padding: '0',
-                                        background: 'white',
-                                    }}
-                                >
-                                    <div
-                                        className={`container ${starred ? 'starred' : 'unstarred'}`}
-                                    >
-                                        <span className='star'>
-                                            <span className='star-icon'>
-                                                <FaRegStar
-                                                    size={30}
-                                                    style={{
-                                                        textAlign: 'center',
-                                                        verticalAlign: 'middle',
-                                                    }}
-                                                />
-                                            </span>
-                                        </span>
-                                    </div>
-                                </Button>
-                            </div>
-                        </div>
+                                <CardTitle>{sectionName}</CardTitle>
+                                <CardDescription style={{ color: 'white' }}>
+                                    {taskListDescription}
+                                </CardDescription>
+                                <div className='task-ladder-back'>
+                                    <RiHome6Line
+                                        style={{ color: 'white' }}
+                                        size={30}
+                                        onClick={() => handleHomeClick()}
+                                    />
+                                </div>
+                            </CardHeader>
+                        </Card>
                     </div>
-                    {tasks.map((task, index) => (
-                        <div key={task.id} className={`task-${index}`}>
-                            {index > 0 && (
+                    <div className='task-ladder'>
+                        <div className='task-ladder-score'>
+                            <p>{score}</p>{' '}
+                            <AiOutlineTrophy
+                                size={30}
+                                style={{ color: '#f6c342' }}
+                            />
+                        </div>
+
+                        <div
+                            className='task-ladder-finish'
+                            style={{
+                                backgroundColor: starred
+                                    ? '#f6c342'
+                                    : '#6c6c6c',
+                            }}
+                        >
+                            <div className={`task-${'inf'}`}>
                                 <SteppedLineTo
-                                    from={`task-${index}`}
-                                    to={`task-${index + 1}`}
+                                    from={`task-${'inf'}`}
+                                    to={`task-${0}`}
                                     borderColor={
-                                        tasks[index - 1].completed
+                                        tasks != undefined && tasks[0].completed
                                             ? '#191919'
                                             : '#d1d5db'
                                     }
@@ -323,73 +303,133 @@ const TaskLadder: React.FC = () => {
                                     zIndex={-1}
                                     className='task-ladder-line'
                                 />
-                            )}
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    position: 'relative',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <Popover >
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            className={`task-${index + 1}`}
-                                            variant='outline'
-                                            ref={buttonRef}
-                                            style={{
-                                                backgroundColor:
-                                                    clickedButton === task.id &&
-                                                        !task.completed
-                                                        ? '#abecc7'
-                                                        : task.completed
-                                                            ? '#90e16f'
-                                                            : '',
-                                                width: '40px',
-                                                height: '40px',
-                                                padding: '0',
-                                            }}
-                                            onClick={(event) => {
-                                                event.stopPropagation();
-                                                handleButtonClick(task.id);
-                                            }}
-                                        >
-                                            {getIcon(task.option, task)}
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent
-                                        className='task-ladder-button'
-                                        side={index % 2 === 0 ? 'left' : 'right'}
-                                        align='center'
-                                        style={{ maxWidth: '120px' }}
-                                    >
-                                        {task.message}
-                                    </PopoverContent>
-                                </Popover>
                                 <div
-                                    className='task-ladder-regular-desc'
                                     style={{
-                                        [index % 2 === 0 ? 'right' : 'left']:
-                                            '-110px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
                                     }}
                                 >
-                                    {task.shortText}
+                                    <Button
+                                        className={`task-${'inf'}`}
+                                        variant='outline'
+                                        style={{
+                                            width: '40px',
+                                            height: '40px',
+                                            padding: '0',
+                                            background: 'white',
+                                        }}
+                                    >
+                                        <div
+                                            className={`container ${starred ? 'starred' : 'unstarred'}`}
+                                        >
+                                            <span className='star'>
+                                                <span className='star-icon'>
+                                                    <FaRegStar
+                                                        size={30}
+                                                        style={{
+                                                            textAlign: 'center',
+                                                            verticalAlign:
+                                                                'middle',
+                                                        }}
+                                                    />
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </Button>
                                 </div>
                             </div>
                         </div>
-                    ))}
-                    <SteppedLineTo
-                        from={`task-${tasks.length}`}
-                        borderColor={'#191919'}
-                        borderWidth={3}
-                        delay={true}
-                        zIndex={-1}
-                        to='task-ladder-container'
-                        toAnchor='bottom center'
-                    />
+                        {tasks.map((task, index) => (
+                            <div key={task.id} className={`task-${index}`}>
+                                {index > 0 && (
+                                    <SteppedLineTo
+                                        from={`task-${index}`}
+                                        to={`task-${index + 1}`}
+                                        borderColor={
+                                            tasks[index - 1].completed
+                                                ? '#191919'
+                                                : '#d1d5db'
+                                        }
+                                        borderWidth={3}
+                                        delay={true}
+                                        zIndex={-1}
+                                        className='task-ladder-line'
+                                    />
+                                )}
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        position: 'relative',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <Button
+                                                className={`task-${index + 1}`}
+                                                variant='outline'
+                                                ref={buttonRef}
+                                                style={{
+                                                    backgroundColor:
+                                                        clickedButton ===
+                                                            task.id &&
+                                                        !task.completed
+                                                            ? '#abecc7'
+                                                            : task.completed
+                                                              ? '#90e16f'
+                                                              : '',
+                                                    width: '40px',
+                                                    height: '40px',
+                                                    padding: '0',
+                                                }}
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    handleButtonClick(task.id);
+                                                }}
+                                            >
+                                                {getIcon(task.option, task)}
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent
+                                            className='task-ladder-button'
+                                            side={
+                                                index % 2 === 0
+                                                    ? 'left'
+                                                    : 'right'
+                                            }
+                                            align='center'
+                                            style={{ maxWidth: '120px' }}
+                                        >
+                                            {task.message}
+                                        </PopoverContent>
+                                    </Popover>
+                                    <div
+                                        className='task-ladder-regular-desc'
+                                        style={{
+                                            [index % 2 === 0
+                                                ? 'right'
+                                                : 'left']: '-110px',
+                                        }}
+                                    >
+                                        {task.shortText}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        <SteppedLineTo
+                            from={`task-${tasks.length}`}
+                            borderColor={'#191919'}
+                            borderWidth={3}
+                            delay={true}
+                            zIndex={-1}
+                            to='task-ladder-container'
+                            toAnchor='bottom center'
+                        />
+                    </div>
                 </div>
-            </div>
+            )
         );
     }
 };

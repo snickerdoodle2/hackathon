@@ -48,7 +48,7 @@ class Section {
         return this.configData;
     }
 
-    // isSecrionautohrized 
+    // isSecrionautohrized
 
     getTaskById(id: number) {
         const taskId = Number(id);
@@ -67,7 +67,6 @@ class Section {
             (task: { id: number }) => task.id === taskId
         );
     }
-
 }
 
 export default Section;
