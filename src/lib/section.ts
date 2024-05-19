@@ -26,7 +26,7 @@ class Section {
             return false;
         }
 
-        console.log("Valid password", this.configData.password, password, this.configData.password == password)
+        console.log("Access granted", this.configData.password, password, this.configData.password == password)
         localStorage.setItem(`section-${this.configurationid}`, 'true');
 
         return true;

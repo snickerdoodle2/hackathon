@@ -7,6 +7,7 @@ import { AuthorizeSection } from '@/pages/authorize_section.tsx';
 import { Wordle } from './components/minigames/wordle/wordle';
 import Info from './pages/info';
 import Task from './pages/task';
+import { Toaster } from "@/components/ui/toaster"
 
 const router = createBrowserRouter([
     {
@@ -53,5 +54,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <RouterProvider router={router} />
+        <Toaster />
     </React.StrictMode>
 );

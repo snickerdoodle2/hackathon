@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Section from '@/lib/section.ts';
+import { useToast } from "@/components/ui/use-toast"
 
 function Loading() {
     return (
@@ -37,6 +38,8 @@ function Loading() {
 
 export const AuthorizeSection = () => {
     const navigate = useNavigate();
+    const { toast } = useToast();
+
     const { sectionId, pass } = useParams();
 
     const [section, setSection] = useState(null);
@@ -64,9 +67,24 @@ export const AuthorizeSection = () => {
                 var status = section.authorizeSection(pass);
                 if (status) {
                     console.log("Authorized section: ", sectionId, pass)
+
+                    toast({
+                        variant: 'info',
+                        title: "Rozpoczynamy eksploracje",
+                        description: "Dobrej zabawy!",
+                        duration: 2000
+                    });
+
                     navigate(`/sections/${sectionId}/tasks`)
                 } else {
                     console.log("Not authorized section: ", sectionId)
+                    toast({
+                        variant: "destructive",
+                        title: "Nieautoryzowany dostęp",
+                        description: "Niepoprawne hasło dostępu do sekcji.",
+                        duration: 2000
+                    });
+
                     navigate('/');
                 }
             } else {
