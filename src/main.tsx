@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         element: <AuthorizeSection />,
     },
     {
-        path: '/info',
+        path: 'sections/1/tasks/2/game',
         element: <Info />,
     },
     {

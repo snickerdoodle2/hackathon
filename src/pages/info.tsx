@@ -17,7 +17,7 @@ const Info: React.FC = () => {
         links: {
             'Więcej o KN BIT': 'https://knbit.edu.pl',
             Linkedin:
-                'www.linkedin.com/company/bit-scientific-group-at-agh-university',
+                'https://www.linkedin.com/company/bit-scientific-group-at-agh-university/?originalSubdomain=pl',
         },
     };
 
@@ -81,11 +81,11 @@ const Info: React.FC = () => {
     };
 
     const handleBackClick = () => {
-        navigate('/');
+        navigate(-1);
     };
 
     const handleReadClick = () => {
-        navigate('/');
+        navigate(-1);
     };
 
     return (
