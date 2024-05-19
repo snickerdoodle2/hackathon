@@ -206,11 +206,13 @@ const TaskLadder: React.FC = () => {
         if (!loading && section != undefined) {
             return () => {
                 if (tasks.every((task) => task.completed)) {
-                    setStarred(!starred);
+                    setStarred(true);
+                } else {
+                    setStarred(false);
                 }
             };
         }
-    }, [clickedButton, starred]); //eslint-disable-line react-hooks/exhaustive-deps
+    }, [clickedButton, starred, tasks]); //eslint-disable-line react-hooks/exhaustive-deps
 
     const handleContainerClick = () => {
         if (clickedButton !== null) {
@@ -301,7 +303,7 @@ const TaskLadder: React.FC = () => {
                                         }
                                         borderWidth={3}
                                         delay={true}
-                                        zIndex={-1}
+                                        zIndex={0}
                                         className='task-ladder-line'
                                     />
                                     <div
@@ -355,7 +357,7 @@ const TaskLadder: React.FC = () => {
                                             }
                                             borderWidth={3}
                                             delay={true}
-                                            zIndex={-1}
+                                            zIndex={0}
                                             className='task-ladder-line'
                                         />
                                     )}
@@ -378,9 +380,9 @@ const TaskLadder: React.FC = () => {
                                                             clickedButton ===
                                                                 task.id &&
                                                             !task.completed
-                                                                ? '#abecc7'
+                                                                ? '#90e16f'
                                                                 : task.completed
-                                                                  ? '#90e16f'
+                                                                  ? '#4ab52f'
                                                                   : '',
                                                         width: '40px',
                                                         height: '40px',
@@ -427,8 +429,8 @@ const TaskLadder: React.FC = () => {
                                 borderColor={'#191919'}
                                 borderWidth={3}
                                 delay={true}
-                                zIndex={-1}
-                                to='task-ladder-container'
+                                zIndex={0}
+                                to='animated-background2'
                                 toAnchor='bottom center'
                             />
                         </div>
