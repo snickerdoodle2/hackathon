@@ -7,11 +7,12 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "format": "prettier . --write",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "lint": "tsc --noEmit && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "prettier:check": "prettier --check .",
         "preview": "vite preview"
     },
     "dependencies": {
+        "@radix-ui/react-alert-dialog": "^1.0.5",
         "@radix-ui/react-popover": "^1.0.7",
         "@radix-ui/react-slot": "^1.0.2",
         "class-variance-authority": "^0.7.0",
@@ -26,6 +27,7 @@
         "react-lineto": "^3.3.0",
         "react-router-dom": "^6.23.1",
         "react-toastify": "^10.0.5",
+        "react-webcam": "^7.2.0",
         "tailwind-merge": "^2.3.0",
         "tailwindcss-animate": "^1.0.7"
     },

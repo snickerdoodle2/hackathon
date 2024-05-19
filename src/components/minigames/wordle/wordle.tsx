@@ -3,7 +3,6 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 type Paradigm = 'Objective' | 'Imperative' | 'Functional';
 type Language = {
@@ -153,9 +152,10 @@ const Results: React.FC<{ choices: Language[]; correct: Language }> = ({
     );
 };
 
-export const Wordle = () => {
+export const Wordle: React.FC<{ onFinish: (_arg: number) => void }> = ({
+    onFinish,
+}) => {
     const [input, setInput] = useState('');
-    const navigation = useNavigate();
 
     const correct = langs[0];
 
@@ -172,25 +172,24 @@ export const Wordle = () => {
 
     useEffect(() => {
         if (correctChoice) {
-            // TODO: Add points
+            const pointsForFinishing =
+                Math.max(langs.length - choices.length, 0) * 100;
 
-            setTimeout(() => {
-                navigation('/');
-            }, 5000);
+            onFinish(pointsForFinishing);
         }
-    }, [correctChoice, navigation]);
+    }, [correctChoice]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    if (correctChoice) {
-        return (
-            <div>
-                <p>yay!</p>
-                <p>Redirecting in 5 seconds!!</p>
-            </div>
-        );
-    }
+    // if (correctChoice) {
+    //     return (
+    //         <div>
+    //             <p>yay!</p>
+    //             <p>Redirecting in 5 seconds!!</p>
+    //         </div>
+    //     );
+    // }
 
     return (
-        <div className='flex flex-col justify-between h-svh px-4 py-2 '>
+        <div className='flex flex-col justify-between flex-1 px-4 py-2 '>
             <div>
                 <Input
                     value={input}

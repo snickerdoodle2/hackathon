@@ -2,20 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from '@/pages/home.tsx';
 import TaskLadder from './pages/taskList';
 
-import Nono from './components/minigames/Nono';
-
-import { GamePage } from '@/pages/game_page.tsx';
-import { Wordle } from './components/minigames/wordle/wordle';
+import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
+import MiniQuiz from './pages/miniquiz';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <p>Home</p>,
+        element: <Home />,
     },
     {
         path: 'scoreboard',
@@ -26,6 +25,10 @@ const router = createBrowserRouter([
         element: <Nono onFinish={() => alert('xd')} />,
     },
     {
+        path: 'taskList', //sections/:sectionId/
+        element: <TaskLadder />,
+    },
+    {
         path: 'sections/:sectionId/tasks/',
         element: <TaskLadder />,
     },
@@ -34,16 +37,16 @@ const router = createBrowserRouter([
         element: <GamePage />,
     },
     {
-        path: 'debug/wordle',
-        element: <Wordle />,
-    },
-    {
         path: '/info',
         element: <Info />,
     },
     {
         path: '/task',
         element: <Task />,
+    },
+    {
+        path: '/mini-quiz',
+        element: <MiniQuiz />,
     },
     {
         path: '*',
