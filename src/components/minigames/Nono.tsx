@@ -1,6 +1,7 @@
 // TODO: naprawic ten paski po prawej
 import { useEffect, useState } from 'react';
 import Cell from '../nonogram/Cell';
+import Webcam from 'react-webcam';
 // import { useNavigate } from 'react-router-dom';
 // import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 // import WinPopup from '../nonogram/WinPopup';
@@ -132,12 +133,11 @@ export default function Nono({ onFinish }: Props) {
         return columnClues;
     }
 
-
     const whenCountdown = 0;
     const countdownLength = 3;
     const backTransTarget = 1.5;
     const [backgroundTransition, setBackgroundTransition] = useState<number>(0);
-    const pointsForFinishing = 500
+    const pointsForFinishing = 500;
 
     // function countdown(num: number) {
     //     setCount(num);
@@ -155,6 +155,8 @@ export default function Nono({ onFinish }: Props) {
         }
     }, [wrong]);
 
+    const [isShown, setShown] = useState<boolean>(false);
+
     return (
         <div
             style={{
@@ -166,6 +168,8 @@ export default function Nono({ onFinish }: Props) {
                 maxHeight: nono_height + top_num_height,
             }}
         >
+            {isShown ? <Webcam /> : null}
+            <button onClick={() => setShown(isShown ? false : true)} >kamera</button>
             <div
                 style={{
                     display: 'flex',
@@ -228,7 +232,13 @@ export default function Nono({ onFinish }: Props) {
                         </div>
                     ))}
                 </div>
-                <div style={{ width: nono_width, borderTopWidth: 0.5, borderLeftWidth: 0.5}}>
+                <div
+                    style={{
+                        width: nono_width,
+                        borderTopWidth: 0.5,
+                        borderLeftWidth: 0.5,
+                    }}
+                >
                     {nonogram.map((row, i) => (
                         <div
                             style={{
