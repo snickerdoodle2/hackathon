@@ -1,25 +1,27 @@
-type Task = {
-    id: number,
-    title: string,
-    overview: string,
-    description: string,
-    game: {
-        id: number,
-        type: "Wordle" | "Nonogram"
-    }
-} | {
-    id: number,
-    type: string,
-    configuration: any
-}
+type Task =
+    | {
+          id: number;
+          title: string;
+          overview: string;
+          description: string;
+          game: {
+              id: number;
+              type: 'Wordle' | 'Nonogram';
+          };
+      }
+    | {
+          id: number;
+          type: string;
+          configuration: any;
+      };
 
 type Configuration = {
-    id: number,
-    name: string,
-    localizationTips: string,
-    localization: string,
-    tasks: Task[]
-}
+    id: number;
+    name: string;
+    localizationTips: string;
+    localization: string;
+    tasks: Task[];
+};
 
 class Section {
     private configData: Configuration;
@@ -35,7 +37,7 @@ class Section {
     static async createInstance(id: number) {
         // FIXME: can fail
         const configuration = await fetch(`/${id}.json`);
-        const configData = await configuration.json() as Configuration;
+        const configData = (await configuration.json()) as Configuration;
 
         return new Section(id, configData);
     }

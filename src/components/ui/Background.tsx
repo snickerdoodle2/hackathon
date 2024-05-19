@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Background: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
