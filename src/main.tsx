@@ -8,6 +8,7 @@ import TaskLadder from './pages/taskList';
 import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
+import Prizes from '@/pages/prizes';
 import MiniQuiz from './pages/miniquiz';
 
 // TODO: jakies inne routy moze?
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
     {
         path: '/mini-quiz',
         element: <MiniQuiz />,
+    },
+    {
+        path: '/prizes',
+        element: <Prizes />
     },
     {
         path: '*',
