@@ -5,7 +5,6 @@ import Section from '../lib/section';
 import { useState, useEffect } from 'react';
 import GameWrapper from '@/components/GamePage/GameWrapper';
 import GamePageLoading from '@/components/GamePage/GamePageLoading';
-import Background from '@/components/ui/Background.tsx';
 
 export default function GamePage() {
     const navigate = useNavigate();
@@ -53,12 +52,10 @@ export default function GamePage() {
     const fallbackRoute = `/sections/${sectionId}/tasks`;
 
     return (
-       <Background>
-           <GameWrapper
-               navigate={navigate}
-               fallbackRoute={fallbackRoute}
-               task={task}
-           />
-       </Background>
+        <GameWrapper
+            navigate={navigate}
+            fallbackRoute={fallbackRoute}
+            task={task}
+        />
     );
 }

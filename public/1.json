@@ -1,53 +1,35 @@
 {
     "id": 1,
-    "name": "Koło Naukowe BIT",
+    "name": "Koło Naukowe Bit",
     "localizationTips": "Szukaj dużego napisu KN BIT",
     "localization": "sala 1.38",
     "password": "1234",
     "tasks": [
         {
             "id": 1,
-            "type": "info",
-            "title": "BIT Info",
-            "overview":"Info związane z KN BIT",
-            "description":"Dowiedz się czym jest BIT",
-            "configuration": {
-                "infos": {
-                    "Czym jest BIT":
-                    "Koło naukowe BIT to przede wszystkim miejsce, gdzie studenci AGH mogą rozwijać swoje zainteresowania i się nimi dzielić. Znajdziemy tutaj ludzi zainteresowanych nowoczesnymi metodami tworzenia oprogramowania, aktualnymi technologiami webowymi, a także algorytmami czy sztuczną inteligencją.",
-                    "Komu pomagamy":
-                    "Oprócz rozwijania swoich pasji, dzielimy się też wiedzą z zakresu studiów, prowadząc zajęcia wprowadzające w dziedziny matematyki i informatyki dla osób, które wcześniej nie miały z danymi zagadnieniami styczności. Wszystko po to, żeby wymienić się doświadczeniem i szybciej oraz lepiej przygotować się na zajęcia na uczelni."
-                },
-                "youtube": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                "links": {
-                    "Więcej o KN BIT": "https://knbit.edu.pl",
-                    "Linkedin":
-                    "www.linkedin.com/company/bit-scientific-group-at-agh-university"
-                }
-            }
-        },
-        {
-            "id": 2,
-            "type": "mini-game",
-            "title": "BIT Quiz",
-            "overview": "Quiz związany z KN BIT",
-            "description": "Odpowiadaj na pytania i zgarniaj punkty",
+            "title": "Bit Wordle",
+            "overview": "Wordle związane z KN BIT",
+            "description": "Odgadnij słowa związane z kołem naukowym BIT",
             "game": {
-                "id": 2,
-                "type": "Quiz",
+                "id": 1,
+                "type": "Wordle",
                 "configuration": {}
             }
         },
         {
+            "id": 2,
+            "type": "Info",
+            "configuration": {}
+        },
+        {
             "id": 3,
-            "type": "task",
-            "title": "BIT Task",
-            "overview":"Task związany z KN BIT",
-            "description":"Odpowiedz na pytanie i ciesz się dodatkowymi punktami",
-            "configuration": {
-                "title": "Ile głównych sekcji ma BIT?",
-                "description": "Dowiedz sie ile glównych sekcji posiada koło naukowe BIT-u! Nie pomyl się!",
-                "correctCode": "3"
+            "title": "Bit Nono",
+            "overview": "Wordle związane z KN BIT",
+            "description": "Odgadnij słowa związane z kołem naukowym BIT",
+            "game": {
+                "id": 3,
+                "type": "Nonogram",
+                "configuration": {}
             }
         }
     ]
