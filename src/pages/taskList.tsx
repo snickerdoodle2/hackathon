@@ -133,7 +133,7 @@ const TaskLadder: React.FC = () => {
                               : task.type === 'Info'
                                 ? Option.Info
                                 : (() => {
-                                    console.log(`Unknown task found`);
+                                      console.log(`Unknown task found`);
                                       throw new Error(`Unknown task `);
                                   })(),
                     name: 'unknownRR',
@@ -244,9 +244,7 @@ const TaskLadder: React.FC = () => {
                         onClick={() => handleContainerClick()}
                     >
                         <div className='task-ladder-title-container'>
-                            <Card
-                                className='task-ladder-card m-0 animated-background text-white bg-gradient-to-br from-orange-300 to-orange-600 to-90% shadow-[#1f1f1f] shadow-xl border-none p-3'
-                            >
+                            <Card className='task-ladder-card m-0 animated-background text-white bg-gradient-to-br from-orange-300 to-orange-600 to-90% shadow-[#1f1f1f] shadow-xl border-none p-3'>
                                 <CardHeader
                                     style={{
                                         padding: '4% 2% 0% 4%',

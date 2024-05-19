@@ -39,9 +39,7 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
     return (
         <div className='h-screen'>
             <div className='flex justify-center items-center h-32 text-white'>
-                <Card
-                    className='m-0 animated-background text-white bg-gradient-to-br from-orange-300 to-orange-600 to-90% shadow-[#1f1f1f] shadow-xl border-none'
-                >
+                <Card className='m-0 animated-background text-white bg-gradient-to-br from-orange-300 to-orange-600 to-90% shadow-[#1f1f1f] shadow-xl border-none'>
                     <CardHeader>
                         <CardTitle>{task.title}</CardTitle>
                         <CardDescription>{task.description}</CardDescription>

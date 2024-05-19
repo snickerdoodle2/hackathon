@@ -9,20 +9,17 @@
             "id": 1,
             "type": "Info",
             "title": "BIT Info",
-            "overview":"Info związane z KN BIT",
-            "description":"Dowiedz się czym jest BIT",
+            "overview": "Info związane z KN BIT",
+            "description": "Dowiedz się czym jest BIT",
             "configuration": {
                 "infos": {
-                    "Czym jest BIT":
-                    "Koło naukowe BIT to przede wszystkim miejsce, gdzie studenci AGH mogą rozwijać swoje zainteresowania i się nimi dzielić. Znajdziemy tutaj ludzi zainteresowanych nowoczesnymi metodami tworzenia oprogramowania, aktualnymi technologiami webowymi, a także algorytmami czy sztuczną inteligencją.",
-                    "Komu pomagamy":
-                    "Oprócz rozwijania swoich pasji, dzielimy się też wiedzą z zakresu studiów, prowadząc zajęcia wprowadzające w dziedziny matematyki i informatyki dla osób, które wcześniej nie miały z danymi zagadnieniami styczności. Wszystko po to, żeby wymienić się doświadczeniem i szybciej oraz lepiej przygotować się na zajęcia na uczelni."
+                    "Czym jest BIT": "Koło naukowe BIT to przede wszystkim miejsce, gdzie studenci AGH mogą rozwijać swoje zainteresowania i się nimi dzielić. Znajdziemy tutaj ludzi zainteresowanych nowoczesnymi metodami tworzenia oprogramowania, aktualnymi technologiami webowymi, a także algorytmami czy sztuczną inteligencją.",
+                    "Komu pomagamy": "Oprócz rozwijania swoich pasji, dzielimy się też wiedzą z zakresu studiów, prowadząc zajęcia wprowadzające w dziedziny matematyki i informatyki dla osób, które wcześniej nie miały z danymi zagadnieniami styczności. Wszystko po to, żeby wymienić się doświadczeniem i szybciej oraz lepiej przygotować się na zajęcia na uczelni."
                 },
                 "youtube": "https://www.youtube.com/embed/dQw4w9WgXcQ",
                 "links": {
                     "Więcej o KN BIT": "https://knbit.edu.pl",
-                    "Linkedin":
-                    "www.linkedin.com/company/bit-scientific-group-at-agh-university"
+                    "Linkedin": "www.linkedin.com/company/bit-scientific-group-at-agh-university"
                 }
             }
         },
@@ -42,8 +39,8 @@
             "id": 3,
             "type": "Task",
             "title": "BIT Task",
-            "overview":"Task związany z KN BIT",
-            "description":"Odpowiedz na pytanie i ciesz się dodatkowymi punktami",
+            "overview": "Task związany z KN BIT",
+            "description": "Odpowiedz na pytanie i ciesz się dodatkowymi punktami",
             "configuration": {
                 "title": "Jak wielu członków ma BIT",
                 "description": "Dowiedz z ilu osób składa nasze koło naukowe i zgarnij darmowe punkty",
