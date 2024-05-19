@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 
-// Przykładowe dane JSON z pytaniami i odpowiedziami
+
 const quizData = [
     {
         question: 'Których zajęć nie prowadzi BIT?',
@@ -114,7 +114,11 @@ const quizData = [
     },
 ];
 
-const MiniQuiz: React.FC = () => {
+interface Props {
+    onFinish: (_num: number) => void;
+}
+
+const MiniQuiz: React.FC = ({ onFinish }: Props) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<
         number | null

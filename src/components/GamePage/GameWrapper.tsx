@@ -41,7 +41,7 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
         <div className='h-screen'>
             <div className='flex justify-center items-center h-32 text-white'>
                 <Card
-                    className='m-2'
+                    className='m-2 border-none'
                     style={{
                         background:
                             'linear-gradient(to right, #F48535, #F4A435)',
