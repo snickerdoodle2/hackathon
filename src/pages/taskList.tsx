@@ -34,7 +34,6 @@ interface LocalTask {
     completed: boolean;
     shortText: string;
     option: Option;
-    gameId: number;
 }
 
 function Loading() {
@@ -104,7 +103,7 @@ const TaskLadder: React.FC = () => {
             }
         };
         fetchConfig();
-    }, [sectionId]);
+    }, [sectionId]); //eslint-disable-line react-hooks/exhaustive-deps
 
     // this use effect sets all data reqired for task ladder
     useEffect(() => {
@@ -121,14 +120,13 @@ const TaskLadder: React.FC = () => {
                     option:
                         task.type === 'Game'
                             ? Option.Game
-                            : task.type === 'LocalTask'
+                            : task.type === 'Task'
                               ? Option.Task
                               : task.type === 'Info'
                                 ? Option.Info
                                 : (() => {
                                       throw new Error('Unknown task');
                                   })(),
-                    gameId: task.game.id,
                     name: 'unknownRR',
                 };
                 ttasks.push(newTask);
@@ -204,7 +202,7 @@ const TaskLadder: React.FC = () => {
                 }
             };
         }
-    }, [clickedButton, starred]); //add tasks as dep
+    }, [clickedButton, starred]); //eslint-disable-line react-hooks/exhaustive-deps
 
     const handleContainerClick = () => {
         if (clickedButton !== null) {

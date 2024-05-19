@@ -1,12 +1,11 @@
 import Background from '@/components/ui/Background';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Welcome() {
     const navi = useNavigate();
 
     return (
-        <Background>
+        <Background animationClass={'animate-pulse'}>
             <div
                 style={{
                     backgroundColor: 'rgba(255,255,255,0.5)',
@@ -19,7 +18,7 @@ export default function Welcome() {
                     fontSize: 18,
                     alignItems: 'center',
                     textAlign: 'center',
-                    alignContent: "space-around",
+                    alignContent: 'space-around',
                 }}
             >
                 <div>

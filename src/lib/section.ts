@@ -15,10 +15,6 @@ export type TextTask = {
     type: 'Info';
     title: string;
     overview: string;
-    game: {
-        id: number;
-        type: 'Wordle' | 'Nonogram';
-    };
     configuration: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
@@ -26,7 +22,7 @@ type JsonTask = {
     id: number;
     overview: string;
     title: string;
-    type: string;
+    type: 'Task';
     game: {
         id: number;
     };

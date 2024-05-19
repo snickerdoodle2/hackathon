@@ -86,11 +86,11 @@ const Home = () => {
             <AlertDialog>
                 <AlertDialogTrigger>
                     <img
-                    src={imageSrc}
-                    className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
-                    onMouseOver={() => setImageSrc('assets/rocket2.png')}
-                    onMouseOut={() => setImageSrc('assets/rocket.png')}
-                />
+                        src={imageSrc}
+                        className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
+                        onMouseOver={() => setImageSrc('assets/rocket2.png')}
+                        onMouseOut={() => setImageSrc('assets/rocket.png')}
+                    />
                 </AlertDialogTrigger>
                 <AlertDialogContent className='absolute overflow-clip'>
                     <AlertDialogHeader>

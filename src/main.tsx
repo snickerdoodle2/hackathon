@@ -10,7 +10,6 @@ import Info from './pages/info';
 import Task from './pages/task';
 import MiniQuiz from './pages/miniquiz';
 import Welcome from './pages/Welcome';
-import Scoreboard from './pages/Scoreboard.tsx';
 
 import Nono from './components/minigames/Nono';
 
