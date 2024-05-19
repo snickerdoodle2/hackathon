@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes float {
+    0% {
+        transform: translate(-230, -150);
+        rotate: 180deg;
+    }
+    25% {
+        transform: translate(423px, 0px);
+        rotate: 40deg;
+    }
+    50% {
+        transform: translate(100px, -353px);
+        rotate: 80deg;
+    }
+    75% {
+        transform: translate(0, 120px);
+        rotate: 40deg;
+    }
+    100% {
+        transform: translate(-30, -70);
+        rotate: 0deg;
+    }
+}
+
+.animate-float {
+    animation: float 60s linear infinite;
+}
+
 @keyframes spin2 {
     to {
         transform: rotate(360deg);
