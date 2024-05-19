@@ -129,12 +129,12 @@ const TaskLadder: React.FC = () => {
                         task.type === 'Game'
                             ? Option.Game
                             : task.type === 'Task'
-                                ? Option.Task
-                                : task.type === 'Info'
-                                    ? Option.Info
-                                    : (() => {
-                                        throw new Error(`Unknown task `);
-                                    })(),
+                              ? Option.Task
+                              : task.type === 'Info'
+                                ? Option.Info
+                                : (() => {
+                                      throw new Error(`Unknown task `);
+                                  })(),
                     name: 'unknownRR',
                 };
                 ttasks.push(newTask);
@@ -297,7 +297,7 @@ const TaskLadder: React.FC = () => {
                                         to={`task-${0}`}
                                         borderColor={
                                             tasks != undefined &&
-                                                tasks[0].completed
+                                            tasks[0].completed
                                                 ? '#191919'
                                                 : '#d1d5db'
                                         }
@@ -379,11 +379,11 @@ const TaskLadder: React.FC = () => {
                                                         backgroundColor:
                                                             clickedButton ===
                                                                 task.id &&
-                                                                !task.completed
+                                                            !task.completed
                                                                 ? '#90e16f'
                                                                 : task.completed
-                                                                    ? '#4ab52f'
-                                                                    : '',
+                                                                  ? '#4ab52f'
+                                                                  : '',
                                                         width: '40px',
                                                         height: '40px',
                                                         padding: '0',
