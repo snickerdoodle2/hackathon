@@ -1,7 +1,7 @@
 {
     "id": 1,
     "name": "IoT",
-    "localizationTips": "Szukaj na 4 piętrze sali z robotami",
+    "localizationTips": "4 piętro - sala z robotami",
     "localization": "sala 4.23",
     "password": "1234",
     "tasks": [
