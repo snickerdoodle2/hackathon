@@ -76,3 +76,29 @@ To jest gra bo 1:
 -   Ekran Wstepny
 -   Ekran Powieksoznych informacji
 -   Ekrany Minigierek
+
+## Proces Instalacyjny
+
+### Wymagania wstępne
+
+Upewnij się, że masz zainstalowane:
+
+-   [Node.js LTS v20](https://nodejs.org/)
+
+### Instalacja
+
+1. Pobierz projekt:
+```bash
+git clone https://github.com/snickerdoodle2/hackathon.git
+```
+
+1. Zainstaluj biblioteki:
+```bash
+npm install
+```   
+
+### Uruchomienie
+
+```bash
+npm run dev
+```
