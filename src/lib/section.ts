@@ -7,6 +7,7 @@ export type GameTask = {
         id: number;
         type: 'Wordle' | 'Nonogram';
     };
+    type: string;
 };
 
 export type TextTask = {
@@ -45,7 +46,6 @@ class Section {
         return new Section(id, configData);
     }
 
-
     getConfigData() {
         return this.configData;
     }
@@ -71,7 +71,6 @@ class Section {
 
         return true;
     }
-
 
     getTaskById(id: number) {
         const taskId = Number(id);
