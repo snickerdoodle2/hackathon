@@ -134,10 +134,8 @@ export default function Nono({ onFinish }: Props) {
     }
 
     const whenCountdown = 0;
-    const countdownLength = 3;
     const backTransTarget = 1.5;
     const [backgroundTransition, setBackgroundTransition] = useState<number>(0);
-    const pointsForFinishing = 500;
 
     // function countdown(num: number) {
     //     setCount(num);
@@ -153,7 +151,7 @@ export default function Nono({ onFinish }: Props) {
             setBackgroundTransition(backTransTarget);
             onFinish(500);
         }
-    }, [wrong]);
+    }, [wrong]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const [isShown, setShown] = useState<boolean>(false);
 
@@ -169,7 +167,9 @@ export default function Nono({ onFinish }: Props) {
             }}
         >
             {isShown ? <Webcam /> : null}
-            <button onClick={() => setShown(isShown ? false : true)} >kamera</button>
+            <button onClick={() => setShown(isShown ? false : true)}>
+                kamera
+            </button>
             <div
                 style={{
                     display: 'flex',

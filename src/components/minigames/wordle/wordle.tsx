@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { ArrowDown, ArrowUp } from 'lucide-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type Paradigm = 'Objective' | 'Imperative' | 'Functional';
 type Language = {
@@ -177,7 +177,7 @@ export const Wordle: React.FC<{ onFinish: (_arg: number) => void }> = ({
 
             onFinish(pointsForFinishing);
         }
-    }, [correctChoice]);
+    }, [correctChoice]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // if (correctChoice) {
     //     return (
