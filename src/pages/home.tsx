@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Background from '@/components/ui/Background';
 import SectionInfo from '@/components/ui/SectionInfo';
+import { useNavigate } from 'react-router-dom';
 
 import {
     AlertDialog,
@@ -16,11 +17,26 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import Availability from '@/lib/availability';
 
 const Home = () => {
     const [animationClass, setAnimationClass] = useState('animate-pulse');
     const [sectionId, setSectionId] = useState(0);
-    const [imageSrc, setImageSrc] = useState('assets/rocket.png');
+    const navigate = useNavigate();
+
+    const isAvailable = (id: number) => {
+        if (id === 0) {
+            return true;
+        }
+        return Availability.isSectionAvailable(id);
+    };
+
+    const goToSection = (id: number) => {
+        if (!(sectionId == 0)) {
+            const fallbackRoute = `sections/${id}/tasks/`;
+            navigate(fallbackRoute);
+        }
+    };
 
     const handleClickLeft = () => {
         setAnimationClass('animate-spin2');
@@ -51,8 +67,9 @@ const Home = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className='drop-shadow-[0_0px_5px_rgba(0,0,0,1)]'>
-                    <p>Quiz - KN Bit</p>
-                    <p>Wordle - Space Systems</p>
+                    {isAvailable(1) && <p>Quiz - KN Bit</p>}
+                    {isAvailable(2) && <p>Wordle - Informatyka</p>}
+                    {isAvailable(3) && <p>Nonogram - Space Systems</p>}
                 </CardContent>
             </Card>
 
@@ -83,35 +100,43 @@ const Home = () => {
                 className='absolute bottom-0 left-0 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
             ></img>
 
-            <AlertDialog>
-                <AlertDialogTrigger>
-                    <img
-                        src={imageSrc}
-                        className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
-                        onMouseOver={() => setImageSrc('assets/rocket2.png')}
-                        onMouseOut={() => setImageSrc('assets/rocket.png')}
-                    />
-                </AlertDialogTrigger>
-                <AlertDialogContent className='absolute overflow-clip'>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>
-                            Wpisz lub zeskanuj kod
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                            Kody do zadania znajdziesz na dniach otwartych AGH a
-                            podpowiedzi co do ich lokacji umieszczone są na
-                            poszczególnych sekcjach.
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>Anuluj</AlertDialogCancel>
-                        <AlertDialogAction>Zeskanuj kod</AlertDialogAction>
-                        <AlertDialogAction className='my-3'>
-                            Wpisz kod ręcznie
-                        </AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
+            {isAvailable(sectionId) ? (
+                <img
+                    src='assets/rocket.png'
+                    className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
+                    onClick={() => {
+                        goToSection(sectionId);
+                    }}
+                />
+            ) : (
+                <AlertDialog>
+                    <AlertDialogTrigger>
+                        <img
+                            src='assets/rocket2.png'
+                            className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
+                        />
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className='absolute overflow-clip'>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>
+                                Wpisz lub zeskanuj kod
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                                Kody do zadania znajdziesz na dniach otwartych
+                                AGH a podpowiedzi co do ich lokacji umieszczone
+                                są na poszczególnych sekcjach.
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>Anuluj</AlertDialogCancel>
+                            <AlertDialogAction>Zeskanuj kod</AlertDialogAction>
+                            <AlertDialogAction className='my-3'>
+                                Wpisz kod ręcznie
+                            </AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+            )}
         </Background>
     );
 };
