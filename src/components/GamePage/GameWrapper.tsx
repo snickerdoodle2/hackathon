@@ -37,7 +37,7 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
     }
 
     return (
-        <div className='h-screen'>
+        <Card className='max-h-full h-full max-w-full bg-background/90'>
             <div className='flex justify-center items-center h-32 text-white'>
                 <Card
                     className='m-2'
@@ -70,6 +70,6 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
                     Stop Task
                 </Button>
             </div>
-        </div>
+        </Card>
     );
 }
