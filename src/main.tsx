@@ -4,12 +4,12 @@ import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from '@/pages/home.tsx';
 import TaskLadder from './pages/taskList';
+import { StorageProvider } from './components/Storage/storageContext';
 
 import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
 import Prizes from '@/pages/prizes';
-import MiniQuiz from './pages/miniquiz';
 import Scoreboard from './pages/scoreboard';
 import Welcome from './pages/Welcome';
 
@@ -45,16 +45,12 @@ const router = createBrowserRouter([
         element: <AuthorizeSection />,
     },
     {
-        path: '/info',
+        path: 'sections/1/tasks/2/game',
         element: <Info />,
     },
     {
         path: '/task',
         element: <Task />,
-    },
-    {
-        path: '/mini-quiz',
-        element: <MiniQuiz />,
     },
     {
         path: '/prizes',
@@ -79,7 +75,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
-        <Toaster />
+        <StorageProvider>
+            <RouterProvider router={router} />
+            <Toaster />
+        </StorageProvider>
     </React.StrictMode>
 );

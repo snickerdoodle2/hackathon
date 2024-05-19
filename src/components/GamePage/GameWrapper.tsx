@@ -1,9 +1,11 @@
+import { useContext } from 'react';
 import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import GameHelper from './GameHelper';
 import { Button } from '../ui/button';
 import { type GameTask } from '@/lib/section';
 import { useToast } from '../ui/use-toast';
+import { StorageContext } from '@/components/Storage/storageContext.tsx';
 
 interface Props {
     navigate: NavigateFunction;
@@ -15,8 +17,16 @@ export default function GameWrapper({ navigate, fallbackRoute, task }: Props) {
     const navi = useNavigate();
     const { toast } = useToast();
 
+    const context = useContext(StorageContext);
+
+    if (context === undefined) {
+        throw new Error('useStorage must be used within a StorageProvider');
+    }
+
+    const { points, setPoints } = context;
+
     function onFinish(gained: number) {
-        console.log(gained);
+        setPoints(points + gained);
         toast({
             title: "Gratulacje!",
             description: `Zdobyłeś ${gained} punktów! Zaraz wrócisz na poprzednią stronę...`
