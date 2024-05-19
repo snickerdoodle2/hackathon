@@ -9,6 +9,7 @@ import GamePage from '@/pages/game_page.tsx';
 import Info from './pages/info';
 import Task from './pages/task';
 import MiniQuiz from './pages/miniquiz';
+import Nono from './components/minigames/Nono';
 
 // TODO: jakies inne routy moze?
 const router = createBrowserRouter([

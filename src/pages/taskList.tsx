@@ -128,12 +128,12 @@ const TaskLadder: React.FC = () => {
                                 task.type === 'Game'
                                     ? Option.Game
                                     : task.type === 'Task'
-                                      ? Option.Task
-                                      : task.type === 'Info'
-                                        ? Option.Info
-                                        : (() => {
-                                              throw new Error('Unknown task');
-                                          })(),
+                                        ? Option.Task
+                                        : task.type === 'Info'
+                                            ? Option.Info
+                                            : (() => {
+                                                throw new Error('Unknown task');
+                                            })(),
                             gameId: task.game.id,
                             name: 'unknownRR',
                         };
@@ -213,7 +213,7 @@ const TaskLadder: React.FC = () => {
         }
     }, [clickedButton, starred]); //add tasks as dep
 
-    const handleContainerClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleContainerClick = () => {
         if (clickedButton !== null) {
             setClickedButton(null);
         }
@@ -375,11 +375,11 @@ const TaskLadder: React.FC = () => {
                                                     backgroundColor:
                                                         clickedButton ===
                                                             task.id &&
-                                                        !task.completed
+                                                            !task.completed
                                                             ? '#abecc7'
                                                             : task.completed
-                                                              ? '#90e16f'
-                                                              : '',
+                                                                ? '#90e16f'
+                                                                : '',
                                                     width: '40px',
                                                     height: '40px',
                                                     padding: '0',
