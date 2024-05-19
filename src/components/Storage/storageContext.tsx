@@ -54,7 +54,8 @@ export const StorageProvider: React.FC<{ children: ReactNode }> = ({
     );
 };
 
-export const useStorage = (): StorageContextType => { //eslint-disable-line react-refresh/only-export-components
+export const useStorage = (): StorageContextType => {
+    //eslint-disable-line react-refresh/only-export-components
     const context = useContext(StorageContext);
     if (context === undefined) {
         throw new Error('useStorage must be used within a StorageProvider');
