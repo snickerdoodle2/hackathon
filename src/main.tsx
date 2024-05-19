@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { GamePage } from '@/pages/game_page.tsx';
+import GamePage from '@/pages/game_page.tsx';
 import { AuthorizeSection } from '@/pages/authorize_section.tsx';
 import { Wordle } from './components/minigames/wordle/wordle';
 import Info from './pages/info';
