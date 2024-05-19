@@ -6,7 +6,6 @@ import {
     StorageContextType,
 } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background';
-<<<<<<< Updated upstream
 import {
     Card,
     CardContent,
@@ -15,11 +14,9 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
-=======
-import Section from '@/lib/section';
 import GamePageLoading from '@/components/GamePage/GamePageLoading';
+import Section from '@/lib/section';
 
->>>>>>> Stashed changes
 
 const Info: React.FC = () => {
     const navigate = useNavigate();
