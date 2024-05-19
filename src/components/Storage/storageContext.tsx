@@ -45,7 +45,7 @@ export const StorageProvider: React.FC<{ children: ReactNode }> = ({
         if (storedPoints !== null) {
             setPointsState(parseInt(storedPoints));
         }
-    }, []);
+    }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <StorageContext.Provider value={{ points, setPoints }}>
@@ -54,7 +54,7 @@ export const StorageProvider: React.FC<{ children: ReactNode }> = ({
     );
 };
 
-export const useStorage = (): StorageContextType => {
+export const useStorage = (): StorageContextType => { //eslint-disable-line react-refresh/only-export-components
     const context = useContext(StorageContext);
     if (context === undefined) {
         throw new Error('useStorage must be used within a StorageProvider');
