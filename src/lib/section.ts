@@ -55,11 +55,16 @@ class Section {
     }
 
     static async createInstance(id: number) {
-        // FIXME: can fail
-        const configuration = await fetch(`/${id}.json`);
-        const configData = (await configuration.json()) as Configuration;
-
+        const configuration = await fetch(`/sections/${id}.json`);
+        const configData = await configuration.json();
         return new Section(id, configData);
+    }
+    getHint() {
+        return this.configData.localizationTips;
+    }
+
+    getName() {
+        return this.configData.name;
     }
 
     getConfigData() {
