@@ -129,12 +129,12 @@ const TaskLadder: React.FC = () => {
                         task.type === 'Game'
                             ? Option.Game
                             : task.type === 'Task'
-                              ? Option.Task
-                              : task.type === 'Info'
-                                ? Option.Info
-                                : (() => {
-                                      throw new Error(`Unknown task `);
-                                  })(),
+                                ? Option.Task
+                                : task.type === 'Info'
+                                    ? Option.Info
+                                    : (() => {
+                                        throw new Error(`Unknown task `);
+                                    })(),
                     name: 'unknownRR',
                 };
                 ttasks.push(newTask);
@@ -238,8 +238,8 @@ const TaskLadder: React.FC = () => {
             section != undefined &&
             tasks[0] != undefined && (
                 <Background animationClass='animate-pulse'>
-                    <div
-                        className='task-ladder-container'
+                    <Card
+                        className='bg-background/90 h-full w-full overflow-hidden py-4 _container'
                         onClick={() => handleContainerClick()}
                     >
                         <div className='task-ladder-title-container'>
@@ -297,7 +297,7 @@ const TaskLadder: React.FC = () => {
                                         to={`task-${0}`}
                                         borderColor={
                                             tasks != undefined &&
-                                            tasks[0].completed
+                                                tasks[0].completed
                                                 ? '#191919'
                                                 : '#d1d5db'
                                         }
@@ -379,11 +379,11 @@ const TaskLadder: React.FC = () => {
                                                         backgroundColor:
                                                             clickedButton ===
                                                                 task.id &&
-                                                            !task.completed
+                                                                !task.completed
                                                                 ? '#90e16f'
                                                                 : task.completed
-                                                                  ? '#4ab52f'
-                                                                  : '',
+                                                                    ? '#4ab52f'
+                                                                    : '',
                                                         width: '40px',
                                                         height: '40px',
                                                         padding: '0',
@@ -430,11 +430,11 @@ const TaskLadder: React.FC = () => {
                                 borderWidth={3}
                                 delay={true}
                                 zIndex={0}
-                                to='animated-background2'
+                                to='_container'
                                 toAnchor='bottom center'
                             />
                         </div>
-                    </div>
+                    </Card>
                 </Background>
             )
         );
