@@ -13,12 +13,8 @@
                 "id": 1,
                 "type": "Wordle",
                 "configuration": {}
-            }
-        },
-        {
-            "id": 2,
-            "type": "Info",
-            "configuration": {}
+            },
+            "type": "Game"
         }
     ]
 }

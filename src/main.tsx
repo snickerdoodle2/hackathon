@@ -22,16 +22,12 @@ const router = createBrowserRouter([
         element: <p>Scoreboard</p>,
     },
     {
-        path: 'taskList', //sections/:sectionId/
-        element: <TaskLadder />,
-    },
-    {
         path: 'nono',
         element: <Nono onFinish={() => alert('xd')} />,
     },
     {
         path: 'sections/:sectionId/tasks/',
-        element: <div>tasklist</div>,
+        element: <TaskLadder />,
     },
     {
         path: 'sections/:sectionId/tasks/:taskId/game',
