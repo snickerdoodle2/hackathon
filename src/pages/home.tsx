@@ -21,6 +21,7 @@ import {
 const Home = () => {
     const [animationClass, setAnimationClass] = useState('animate-pulse');
     const [sectionId, setSectionId] = useState(0);
+    const [imageSrc, setImageSrc] = useState('assets/rocket.png');
 
     const handleClickLeft = () => {
         setAnimationClass('animate-spin2');
@@ -86,9 +87,11 @@ const Home = () => {
             <AlertDialog>
                 <AlertDialogTrigger>
                     <img
-                        src='assets/rocket.png'
-                        className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
-                    ></img>
+                    src={imageSrc}
+                    className='absolute bottom-12 right-8 drop-shadow-[0_0px_20px_rgba(0,0,0,1)]'
+                    onMouseOver={() => setImageSrc('assets/rocket2.png')}
+                    onMouseOut={() => setImageSrc('assets/rocket.png')}
+                />
                 </AlertDialogTrigger>
                 <AlertDialogContent className='absolute overflow-clip'>
                     <AlertDialogHeader>
