@@ -125,7 +125,7 @@ const TaskLadder: React.FC = () => {
                               : task.type === 'Info'
                                 ? Option.Info
                                 : (() => {
-                                      throw new Error('Unknown task');
+                                      throw new Error(`Unknown task `);
                                   })(),
                     name: 'unknownRR',
                 };

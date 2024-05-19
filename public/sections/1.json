@@ -31,7 +31,8 @@
                 "id": 3,
                 "type": "Nonogram",
                 "configuration": {}
-            }
+            },
+            "type": "Game"
         }
     ]
 }
