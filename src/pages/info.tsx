@@ -6,7 +6,13 @@ import {
     StorageContextType,
 } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
 
 const Info: React.FC = () => {
@@ -106,9 +112,7 @@ const Info: React.FC = () => {
 
     return (
         <Background animationClass={'animate-pulse'}>
-            <Card
-                className='overflow-y-scroll bg-background/90'
-            >
+            <Card className='overflow-y-scroll bg-background/90'>
                 <CardHeader className='flex flex-row items-center'>
                     <Button
                         className='mt-[6px]'
@@ -118,9 +122,7 @@ const Info: React.FC = () => {
                     >
                         <ArrowLeft />
                     </Button>
-                    <CardTitle >
-                        Informacje
-                    </CardTitle>
+                    <CardTitle>Informacje</CardTitle>
                 </CardHeader>
                 <CardContent className='text-justify'>
                     {/* Renderowanie sekcji */}
@@ -131,13 +133,9 @@ const Info: React.FC = () => {
 
                     {/* Renderowanie sekcji linków */}
                     {renderLinks()}
-
                 </CardContent>
                 <CardFooter>
-                    <Button
-                        className='mr-0 ml-auto'
-                        onClick={handleReadClick}
-                    >
+                    <Button className='mr-0 ml-auto' onClick={handleReadClick}>
                         Przeczytałem
                     </Button>
                 </CardFooter>
