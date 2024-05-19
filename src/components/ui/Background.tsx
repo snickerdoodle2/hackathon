@@ -13,8 +13,14 @@ const Background = ({ children, animationClass }: BackgroundProps) => {
         >
             <div
                 className={`h-screen w-screen absolute bg-[url('/assets/Starts.png')] ${animationClass}`}
-            ></div>
-            <div className='relative z-10 h-screen flex flex-col flex-1 py-12 px-6'>
+            >
+                <img
+                    src='/assets/satellite.png'
+                    className='absolute top-[290px] animate-float'
+                />
+            </div>
+
+            <div className='relative z-10 h-screen flex flex-col flex-1 py-12 px-6 font-poppins'>
                 {children}
             </div>
         </div>

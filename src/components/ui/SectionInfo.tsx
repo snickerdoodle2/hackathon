@@ -25,16 +25,16 @@ const SectionInfo = ({ currentSectionId }: Props) => {
     return (
         <motion.div
             key={currentSectionId}
-            className='m-8 text-center'
-            initial={{ opacity: 0, y: -40 }}
+            className='mt-8 text-center'
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 1, ease: 'easeIn' }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
         >
-            <h1 className='text-white text-3xl font-bold animate-pulse2'>
+            <h1 className='text-white text-5xl font-bold animate-pulse2 font-poppins    '>
                 {currentSection?.getName()}
             </h1>
-            <p className='text-white mt-7 animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 text-xl text-white font-bold'>
+            <p className='text-white mt-7 animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 text-2xl text-white font-bold font-poppins'>
                 {currentSection?.getHint()}
             </p>
         </motion.div>
