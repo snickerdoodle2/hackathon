@@ -1,0 +1,24 @@
+{
+    "id": 0,
+    "name": "Strona Główna",
+    "localizationTips": "Witaj na planecie D17",
+    "localization": "sala 1.38",
+    "tasks": [
+        {
+            "id": 1,
+            "title": "Bit Wordle",
+            "overview": "Wordle związane z KN BIT",
+            "description": "Odgadnij słowa związane z kołem naukowym BIT",
+            "game": {
+                "id": 1,
+                "type": "Wordle",
+                "configuration": {}
+            }
+        },
+        {
+            "id": 2,
+            "type": "Info",
+            "configuration": {}
+        }
+    ]
+}

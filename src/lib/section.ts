@@ -8,12 +8,17 @@ class Section {
     }
 
     static async createInstance(id: number) {
-        const configuration = await fetch(`/tasks/${id}.json`);
+        const configuration = await fetch(`/sections/${id}.json`);
         const configData = await configuration.json();
-
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
         return new Section(id, configData);
+    }
+
+    getHint() {
+        return this.configData.localizationTips;
+    }
+
+    getName() {
+        return this.configData.name;
     }
 
     getTaskById(id: number) {

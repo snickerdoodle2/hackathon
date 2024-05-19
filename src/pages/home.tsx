@@ -1,11 +1,10 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {useState } from 'react';
+import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Background from '@/components/ui/Background';
-import { QrReader } from 'react-qr-reader';
-import { useNavigate} from 'react-router-dom';
+import SectionInfo from '@/components/ui/SectionInfo';
 
 import {
     AlertDialog,
@@ -19,12 +18,21 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 
-
-
 const Home = () => {
     const [animationClass, setAnimationClass] = useState('animate-pulse');
-    const handleClick = () => {
+    const [sectionId, setSectionId] = useState(0);
+
+    const handleClickLeft = () => {
         setAnimationClass('animate-spin2');
+        setSectionId((sectionId - 1) % 4);
+        setTimeout(() => {
+            setAnimationClass('animate-pulse');
+        }, 1000);
+    };
+
+    const handleClickRight = () => {
+        setAnimationClass('animate-spin2');
+        setSectionId((sectionId + 1) % 4);
         setTimeout(() => {
             setAnimationClass('animate-pulse');
         }, 1000);
@@ -32,7 +40,6 @@ const Home = () => {
 
     return (
         <Background animationClass={animationClass}>
-
             <Card className='animated-background text-white bg-gradient-to-br from-orange-300 to-orange-600 to-90% shadow-[#1f1f1f] shadow-xl border-none h-[145px]'>
                 <img
                     src='assets/astro.png'
@@ -48,13 +55,25 @@ const Home = () => {
                     <p>Wordle - Space Systems</p>
                 </CardContent>
             </Card>
-            
+
+            <SectionInfo currentSectionId={sectionId} />
+
             <div className='p-8 flex justify-between absolute w-screen left-1/2 -translate-x-1/2 bottom-10 z-10 '>
-                <Button onClick={handleClick} variant='outline' size='icon' className='animate-bounce'>
+                <Button
+                    onClick={handleClickLeft}
+                    variant='outline'
+                    size='icon'
+                    className='animate-bounce'
+                >
                     <ChevronLeft className='h-4 w-4' />
                 </Button>
 
-                <Button onClick={handleClick} variant='outline' size='icon' className='animate-bounce'>
+                <Button
+                    onClick={handleClickRight}
+                    variant='outline'
+                    size='icon'
+                    className='animate-bounce'
+                >
                     <ChevronRight className='h-4 w-4' />
                 </Button>
             </div>
@@ -85,13 +104,14 @@ const Home = () => {
                     <AlertDialogFooter>
                         <AlertDialogCancel>Anuluj</AlertDialogCancel>
                         <AlertDialogAction>Zeskanuj kod</AlertDialogAction>
-                        <AlertDialogAction className="my-3">Wpisz kod ręcznie</AlertDialogAction>
+                        <AlertDialogAction className='my-3'>
+                            Wpisz kod ręcznie
+                        </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
-
         </Background>
     );
-}
+};
 
 export default Home;

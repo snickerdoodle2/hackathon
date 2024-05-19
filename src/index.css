@@ -11,6 +11,14 @@
     animation: spin2 1s ease-in-out infinite;
 }
 
+@keyframes pulse2 {
+    50% {
+        shadow: 0px 10px -14px 14px #fff;
+    }
+}
+.animate-pulse2 {
+    animation: pulse2 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 
 .animated-background {
     background-size: 400%;
@@ -25,7 +33,7 @@
     100% {
         background-position: 0% 50%;
     }
-    
+
     50% {
         background-position: 100% 50%;
     }
@@ -44,7 +52,7 @@
     100% {
         background-position: 0% 50%;
     }
-    
+
     50% {
         background-position: 100% 50%;
     }
