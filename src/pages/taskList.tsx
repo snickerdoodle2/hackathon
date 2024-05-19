@@ -121,12 +121,13 @@ const TaskLadder: React.FC = () => {
                         task.type === 'Game'
                             ? Option.Game
                             : task.type === 'Task'
-                              ? Option.Task
-                              : task.type === 'Info'
-                                ? Option.Info
-                                : (() => {
-                                      throw new Error('Unknown task');
-                                  })(),
+                                ? Option.Task
+                                : task.type === 'Info'
+                                    ? Option.Info
+                                    : (() => {
+                                        // @ts-ignore: Ignoring the error as we expect 'never' type here
+                                        throw new Error(`Unknown task ${task.type}`);
+                                    })(),
                     name: 'unknownRR',
                 };
                 ttasks.push(newTask);
@@ -366,11 +367,11 @@ const TaskLadder: React.FC = () => {
                                                     backgroundColor:
                                                         clickedButton ===
                                                             task.id &&
-                                                        !task.completed
+                                                            !task.completed
                                                             ? '#abecc7'
                                                             : task.completed
-                                                              ? '#90e16f'
-                                                              : '',
+                                                                ? '#90e16f'
+                                                                : '',
                                                     width: '40px',
                                                     height: '40px',
                                                     padding: '0',
