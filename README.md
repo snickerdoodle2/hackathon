@@ -80,18 +80,21 @@ To jest gra bo 1:
 ## Retrospektywa
 
 Co do poprawy:
-- eslint
-- ograniczenie motywu tlyko do koła nakowego bit
+
+-   eslint
+-   ograniczenie motywu tlyko do koła nakowego bit
 
 Co mozna zrobic lepiej:
-- poszerzenie motywu o Iot
-- poszerzenie motywu o Cyberbezpieczenstwo
-- poszerzenie motywu 0 Space Systemes AGH
+
+-   poszerzenie motywu o Iot
+-   poszerzenie motywu o Cyberbezpieczenstwo
+-   poszerzenie motywu 0 Space Systemes AGH
 
 Co dobrze wyszlo:
-- gierki
-- kebab
-- zarzadzanie
+
+-   gierki
+-   kebab
+-   zarzadzanie
 
 ## Proces Instalacyjny
 
@@ -104,14 +107,16 @@ Upewnij się, że masz zainstalowane:
 ### Instalacja
 
 1. Pobierz projekt:
+
 ```bash
 git clone https://github.com/snickerdoodle2/hackathon.git
 ```
 
 1. Zainstaluj biblioteki:
+
 ```bash
 npm install
-```   
+```
 
 ### Uruchomienie
 

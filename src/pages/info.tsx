@@ -17,7 +17,6 @@ import { ArrowLeft } from 'lucide-react';
 import GamePageLoading from '@/components/GamePage/GamePageLoading';
 import Section from '@/lib/section';
 
-
 const Info: React.FC = () => {
     const navigate = useNavigate();
 
@@ -64,8 +63,6 @@ const Info: React.FC = () => {
 
     const jsonData = task.configuration;
 
-
-
     // Przykładowy JSON
     // const jsonData = {
     //     infos: {
@@ -84,16 +81,21 @@ const Info: React.FC = () => {
 
     // Przekształć dane JSON na tablicę sekcji
 
-    const sections: any = Object.entries(jsonData.infos);
+    const sections: any = Object.entries(jsonData.infos); // eslint-disable-line
 
     // Tworzenie sekcji na podstawie danych JSON
     const renderSections = () => {
-        return sections.map(([title, content]: any, index: React.Key | null | undefined) => (
-            <div key={index} className='mt-4'>
-                <h2 className='text-lg font-bold'>{title}</h2>
-                <p className='text-base'>{content}</p>
-            </div>
-        ));
+        return sections.map(
+            (
+                [title, content]: any, // eslint-disable-line
+                index: React.Key | null | undefined
+            ) => (
+                <div key={index} className='mt-4'>
+                    <h2 className='text-lg font-bold'>{title}</h2>
+                    <p className='text-base'>{content}</p>
+                </div>
+            )
+        );
     };
 
     // Sprawdź, czy jest link do YouTube i wyrenderuj iframe
@@ -127,7 +129,7 @@ const Info: React.FC = () => {
                             ([text, url], index) => (
                                 <li key={index}>
                                     <a
-                                        href={url ? `${url}` : "/"}
+                                        href={url ? `${url}` : '/'}
                                         className='text-blue-500 hover:underline'
                                     >
                                         {text}
@@ -142,7 +144,7 @@ const Info: React.FC = () => {
         return null;
     };
 
-    const context = useContext(StorageContext);
+    const context = useContext(StorageContext); // eslint-disable-line
 
     if (context === undefined) {
         throw new Error('useStorage must be used within a StorageProvider');

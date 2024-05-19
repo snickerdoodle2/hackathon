@@ -194,11 +194,11 @@ const TaskLadder: React.FC = () => {
     const handleButtonClick = (taskId: number) => {
         if (clickedButton === taskId) {
             let fallbackRoute = '';
-            if (section?.getTaskById(taskId)?.type == "Game") {
+            if (section?.getTaskById(taskId)?.type == 'Game') {
                 fallbackRoute = `/sections/${sectionId}/tasks/${taskId}/game`;
             } else if (section?.getTaskById(taskId)?.type == 'Info') {
                 fallbackRoute = `/sections/${sectionId}/tasks/${taskId}/info`;
-            }else{
+            } else {
                 fallbackRoute = `/sections/${sectionId}/tasks/${taskId}/task`;
             }
             navigate(fallbackRoute);
