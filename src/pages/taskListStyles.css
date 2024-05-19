@@ -1,0 +1,153 @@
+.task-ladder-container {
+    height: 100svh;
+    position: relative;
+}
+
+.task-ladder-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 20svh;
+    position: relative;
+}
+
+.task-ladder-card {
+    width: 80%;
+}
+
+.task-ladder-back {
+    position: absolute;
+    right: 20px;
+    color: #838586;
+}
+
+.task-ladder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90svh;
+    padding-top: 0rem;
+    padding-bottom: 2rem;
+    padding-top: -20svh;
+}
+
+.task-ladder-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 2%;
+    position: absolute;
+    border-bottom: 2px solid rgb(86, 86, 86);
+}
+
+.task-ladder-score > div {
+    margin-left: 4px;
+}
+
+.task-ladder-score > p {
+    margin-right: 4px;
+    font-size: 1.3em;
+    color: #838586;
+}
+
+.task-ladder-finish {
+    padding: 0.7rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    text-align: center;
+    background-color: #f6c342;
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.task-ladder-line {
+    background-color: #d1d5db;
+    border: 2px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+}
+
+.task-ladder-regular-desc {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #838586;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    text-decoration: underline;
+}
+
+.container {
+    display: table;
+    margin: 80px auto;
+}
+
+.star {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.star-icon {
+    display: block;
+    transition: all 0.2s ease-in;
+    color: #6c6c6c;
+}
+
+.starred .star-icon {
+    color: #f6c342;
+}
+
+.starred {
+    animation: spin 0.6s forwards;
+    transform-origin: 50% 50%;
+    transition-timing-function: ease-in-out;
+}
+
+.starred .star-icon {
+    animation: spin 0.6s forwards;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transition-timing-function: ease-in-out;
+}
+
+.unstarred .star-icon {
+    animation: unspin 0.3s forwards;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transition-timing-function: ease-in-out;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    33% {
+        transform: rotate(175deg);
+    }
+
+    66% {
+        transform: rotate(120deg);
+    }
+
+    100% {
+        transform: rotate(144deg);
+    }
+}
+
+@keyframes unspin {
+    0% {
+        transform: rotate(142deg);
+    }
+
+    100% {
+        transform: rotate(72deg);
+    }
+}

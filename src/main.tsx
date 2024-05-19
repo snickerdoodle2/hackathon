@@ -8,17 +8,23 @@ import { Wordle } from './components/minigames/wordle/wordle';
 import Info from './pages/info';
 import Task from './pages/task';
 import { Toaster } from "@/components/ui/toaster"
+import Home from '@/pages/home.tsx';
+import TaskLadder from './pages/taskList';
+import MiniQuiz from './pages/miniquiz';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <p>Home</p>,
+        element: <Home />,
     },
     {
         path: 'scoreboard',
         element: <p>Scoreboard</p>,
     },
     {
+        path: 'taskList', //sections/:sectionId/
+        element: <TaskLadder />,
+    },
         path: 'sections/:sectionId/tasks/',
         element: <div>tasklist</div>,
     },
@@ -41,6 +47,10 @@ const router = createBrowserRouter([
     {
         path: '/task',
         element: <Task />,
+    },
+    {
+        path: '/mini-quiz',
+        element: <MiniQuiz />,
     },
     {
         path: '*',
