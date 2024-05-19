@@ -2,10 +2,9 @@
 //TODO: import Games from '../components/game';
 import { useNavigate, useParams } from 'react-router-dom';
 import Section from '../lib/section';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import GameWrapper from '@/components/GamePage/GameWrapper';
 import GamePageLoading from '@/components/GamePage/GamePageLoading';
-
 
 export default function GamePage() {
     const navigate = useNavigate();
@@ -22,7 +21,6 @@ export default function GamePage() {
                 setSection(sectionInstance);
             } catch (error) {
                 setError(error as Error);
-                
             } finally {
                 setLoading(false);
             }
@@ -32,7 +30,7 @@ export default function GamePage() {
     }, [sectionId]);
 
     if (loading) {
-        return <GamePageLoading/>;
+        return <GamePageLoading />;
     }
 
     if (error) {
@@ -47,5 +45,12 @@ export default function GamePage() {
 
     const fallbackRoute = `/sections/${sectionId}/tasks`;
 
-    return <GameWrapper navigate={navigate} fallbackRoute={fallbackRoute} sectionId={sectionId} task={task} />
+    return (
+        <GameWrapper
+            navigate={navigate}
+            fallbackRoute={fallbackRoute}
+            sectionId={sectionId}
+            task={task}
+        />
+    );
 }

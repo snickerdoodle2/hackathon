@@ -24,6 +24,7 @@ const router = createBrowserRouter([
         path: 'taskList', //sections/:sectionId/
         element: <TaskLadder />,
     },
+    {
         path: 'sections/:sectionId/tasks/',
         element: <div>tasklist</div>,
     },
