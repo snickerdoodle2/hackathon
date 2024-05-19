@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from "react";
 
-const Background = ({ children }) => {
+const Background: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <div
             className='
