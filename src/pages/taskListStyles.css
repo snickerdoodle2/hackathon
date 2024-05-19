@@ -49,7 +49,7 @@
 .task-ladder-score > p {
     margin-right: 4px;
     font-size: 1.3em;
-    color: #ffffff;
+    font-weight: 700;
 }
 
 .task-ladder-finish {
@@ -75,7 +75,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: #ffffff;
+    font-weight: 700;
     text-transform: uppercase;
     font-size: 0.8em;
     text-decoration: underline;

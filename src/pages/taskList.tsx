@@ -268,8 +268,8 @@ const TaskLadder: React.FC = () => {
             section != undefined &&
             tasks[0] != undefined && (
                 <Background animationClass='animate-pulse'>
-                    <div
-                        className='task-ladder-container'
+                    <Card
+                        className='bg-background/90 h-full w-full overflow-hidden py-4 _container'
                         onClick={() => handleContainerClick()}
                     >
                         <div className='task-ladder-title-container'>
@@ -451,11 +451,11 @@ const TaskLadder: React.FC = () => {
                                 borderWidth={3}
                                 delay={true}
                                 zIndex={0}
-                                to='animated-background2'
+                                to='_container'
                                 toAnchor='bottom center'
                             />
                         </div>
-                    </div>
+                    </Card>
                 </Background>
             )
         );

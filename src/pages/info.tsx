@@ -6,6 +6,14 @@ import {
     StorageContextType,
 } from '@/components/Storage/storageContext';
 import Background from '@/components/ui/Background';
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
+import { ArrowLeft } from 'lucide-react';
 
 const Info: React.FC = () => {
     const navigate = useNavigate();
@@ -104,50 +112,34 @@ const Info: React.FC = () => {
 
     return (
         <Background animationClass={'animate-pulse'}>
-            <div
-                style={{
-                    backgroundColor: 'rgba(255,255,255,0.5)',
-                    width: '90%',
-                    height: '100%',
-                    borderRadius: 20,
-                    alignSelf: 'center',
-                    fontWeight: 500,
-                    padding: 20,
-                    fontSize: 18,
-                    alignItems: 'center',
-                    textAlign: 'center',
-                    alignContent: 'space-around',
-                }}
-                className='overflow-y-scroll'
-            >
-                <div className='info-window px-8 py-8 max-w-screen-lg mx-auto overflow-y-scroll'>
-                    <button
-                        className='back-button absolute top-4 left-8 bg-none border-none text-xl font-bold'
+            <Card className='overflow-y-scroll bg-background/90'>
+                <CardHeader className='flex flex-row items-center'>
+                    <Button
+                        className='mt-[6px]'
+                        variant='ghost'
+                        size='icon'
                         onClick={handleBackClick}
                     >
-                        ←
-                    </button>
-                    <div className='content mt-12'>
-                        <h1 className='text-2xl font-bold mb-8'>Informacje</h1>
+                        <ArrowLeft />
+                    </Button>
+                    <CardTitle>Informacje</CardTitle>
+                </CardHeader>
+                <CardContent className='text-justify'>
+                    {/* Renderowanie sekcji */}
+                    {renderSections()}
 
-                        {/* Renderowanie sekcji */}
-                        {renderSections()}
+                    {/* Renderowanie filmu z YouTube, jeśli istnieje */}
+                    {renderYouTube()}
 
-                        {/* Renderowanie filmu z YouTube, jeśli istnieje */}
-                        {renderYouTube()}
-
-                        {/* Renderowanie sekcji linków */}
-                        {renderLinks()}
-
-                        <Button
-                            className='read-button block mx-auto mt-8 px-4 py-2 bg-blue-500 text-white font-bold rounded cursor-pointer'
-                            onClick={handleReadClick}
-                        >
-                            Przeczytałem
-                        </Button>
-                    </div>
-                </div>
-            </div>
+                    {/* Renderowanie sekcji linków */}
+                    {renderLinks()}
+                </CardContent>
+                <CardFooter>
+                    <Button className='mr-0 ml-auto' onClick={handleReadClick}>
+                        Przeczytałem
+                    </Button>
+                </CardFooter>
+            </Card>
         </Background>
     );
 };
